@@ -1,0 +1,50 @@
+event_homepage:
+    path:     /
+    defaults: { _controller: EventBundle:Default:index }
+evenement_ajoutevenement:
+    path:     /ajouterevent
+    defaults: { _controller: EventBundle:event:ajouterevent}
+
+evenement_afficherevenement:
+    path:     /afficherevent
+    defaults: { _controller: EventBundle:event:afficherevent}
+
+evenement_supprimerevenement:
+    path:     /supprimerevent/{id}
+    defaults: { _controller: EventBundle:event:supprimerevent}
+alll:
+    path:     /alll/{id}
+    defaults: { _controller: EventBundle:event:alll}
+chercherEventmobile:
+    path:     /chercherEventmobile/{id}/{iduser}
+    defaults: { _controller: EventBundle:participation:chercherEventmobile}
+evenement_modifierevenement:
+    path:     /modifierevent/{id}
+    defaults: { _controller: EventBundle:event:modifierevent}
+participation_afficherparticipation:
+    path:     /afficherparticipation
+    defaults: { _controller: EventBundle:participation:afficherparticipation}
+UserAfficheParticipation:
+    path:     /UserAfficheParticipation
+    defaults: { _controller: EventBundle:participation:UserAfficheParticipation }
+UserAfficheParticipationtrier:
+    path:     /UserAfficheParticipationtrier
+    defaults: { _controller: EventBundle:participation:UserAfficheParticipationtrier }
+statt:
+    path:     /stat
+    defaults: { _controller: EventBundle:Default:stat }
+Pdf:
+    path:     /Pdf/{id}
+    defaults: { _controller: EventBundle:participation:Pdf }
+participation_ajoutparticipation:
+    path:     /ajouterparticipation/{id}
+    defaults: { _controller: EventBundle:participation:ajoutParticipation}
+participation_supprimerparticipation:
+    path:     /supprimerparticipation/{id}
+    defaults: { _controller: EventBundle:participation:supprimerparticipation}
+frontE:
+    path:     /E
+    defaults: { _controller: EventBundle:event:afficherE }
+filterEvent:
+    path:     /filterEvent
+    defaults: { _controller: EventBundle:Default:filterEvent }

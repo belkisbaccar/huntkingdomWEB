@@ -1,0 +1,43 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+<div class="row grid-margin">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Liste Des Participations</h4>
+                <p class="card-description">Participations</p>
+                <div id="js-grid" class="pt-3 jsgrid" style="position: relative; height: 516px; width: 100%;"><div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                        <table class="jsgrid-table">
+                            <tr class="jsgrid-header-row"><th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">username</th>
+                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 120px;">Titre  evenement</th>
+                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 110px;">date de reservation</th>
+
+                                <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 150px;">Action <a href = "{{path ('statt')}}"  class="btn btn-inverse-primary btn-fw">Statistique de partcipations</a></th>
+
+                            </tr>
+                            {% for e in participation %}
+                                <tr class="jsgrid-filter-row">
+                                    <td class="jsgrid-cell" style="width: 50px;">{{e.username}}</td>
+                                    <td class="jsgrid-cell" style="width: 120px;">{{e.idEvent.titreEvent}}</td>
+                                    <td class="jsgrid-cell" style="width: 110px;">{{ e.dateReservation|date('Y-m-d ') }}</td>
+
+
+
+                                    <td class="jsgrid-cell" style="width: 200px;">
+
+                                        <a href = " {{path ('participation_supprimerparticipation',{'id' : e.idParticipation}) }}"  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+
+
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+
