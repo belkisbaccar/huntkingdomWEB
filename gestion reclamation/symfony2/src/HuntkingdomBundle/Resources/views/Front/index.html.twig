@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!-- Mirrored from www.webstrot.com/html/weapon/services.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 18:21:30 GMT --><!-- Added by HTTrack -->
+
+
+<head>
+
+    {% block head %}
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 180px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 1180px;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
+        <!--Theme Title-->
+        <title>Huntkingdom</title>
+        <meta name="description" content="">
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" type="image/icon" href="favicon.png">
+
+        <!-- All css Here -->
+        <!-- All plugins css -->
+        <link rel="stylesheet" href="{{ asset('front/css/allplugins.css') }}">
+        <!-- Style css -->
+        <link rel="stylesheet" href="{{ asset('front/style.css') }}">
+        <!-- Responsive css -->
+        <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/owl-carousel-2/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/owl-carousel-2/owl.theme.default.min.css') }}">
+        <!-- Customization css -->
+        <!--If u need any change then use this css file-->
+        <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}">
+
+        <!-- Modernizr JavaScript -->
+        <script src="{{asset('front/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css" id="#jarallax-clip-0">#jarallax-container-0 {
+                clip: rect(0 1217px 420px 0);
+                clip: rect(0, 1217px, 420px, 0);
+            }</style><style type="text/css" id="#jarallax-clip-2">#jarallax-container-2 {
+            clip: rect(0 1217px 838px 0);
+            clip: rect(0, 1217px, 838px, 0);
+        }</style><style type="text/css" id="#jarallax-clip-4">#jarallax-container-4 {
+            clip: rect(0 1217px 768px 0);
+            clip: rect(0, 1217px, 768px, 0);
+        }</style><style type="text/css" id="#jarallax-clip-3">#jarallax-container-3 {
+            clip: rect(0 1217px 628.0625px 0);
+            clip: rect(0, 1217px, 628.0625px, 0);
+        }</style>
+
+    {% endblock %}
+</head>
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Home Page</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>{%  endblock %}
+<body>
+{% block body %}
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;"><img src="assets/images/logo/preloader.gif" id="preloader_image" alt="loader">
+        </div>
+    </div>
+    <!--Preloader area End-->
+
+    <!--Header area start here-->
+    <header>
+
+        {% block navbar %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="logo-area">
+                            <a href=""><img src="{{ asset('images/logotr.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10 hidden-xs">
+                        <div class="main-header">
+                            <div class="main-menus">
+                                <nav>
+                                    <ul class="mamnu">
+                                        <li><a href="{{ path('front') }}">Home</a></li>
+                                        <li><a href="{{ path('frontP') }} ">shop</a></li>
+                                        <li><a href="{{ path('chasseFront') }}">Chasse</a></li>
+
+
+                                        <li>
+                                            <a href="#">Events</a>
+                                            <ul>
+
+                                                <li><a href="{{ path('frontE') }}">event</a></li>
+                                                {% if app.user is not null%}
+                                                <li><a href="{{ path('UserAfficheParticipation') }}">event-single</a></li>
+                                                 {% endif %}
+
+                                            </ul>
+                                        </li>
+                                        {% if app.user is not null%}
+                                        <li>
+
+                                            <a href="{{ path('reclamation_front') }}">Reclamation</a>
+                                            <ul>
+                                                <li><a href="{{ path('reclamation_front') }}">Reclamation</a></li>
+                                                <li><a href="{{ path('reponse_front1') }}">Reponse</a></li>
+                                            </ul>
+                                        </li>
+                                            <li>
+                                                <a href="{{ path('annonce_afficher_front') }}">Annonce</a>
+                                            </li>
+                                        {% endif %}
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="serach-header">
+                                <button class="searchd"><i class="fas fa-search"></i></button>
+                                <div class="searchbox">
+                                    <button class="close">×</button>
+                                    <form>
+                                        <input type="search" placeholder="Search …">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="cart-head">
+                                <button><i class="fas fa-shopping-cart"></i></button>
+                                <div class="nav-shop-cart">
+                                    {% block cart %}
+                                        <div class="widget_shopping_cart_content">
+                                            <ul class="product_list_widget ">
+                                                <li class="mini_cart_item">
+
+                                                    <a href="#">
+                                                        <img src="assets/images/products/5.jpg" alt="">
+                                                        <p class="product-name"></p>
+                                                    </a>
+
+                                                    <p class="quantity">
+                                                        <strong class="Price-amount"></strong>
+                                                    </p>
+
+                                                    <a href="#" class="remove" title="Remove this item"></a>
+                                                </li>
+
+
+                                            </ul>
+
+                                            <p class="buttons">
+                                                <a href="#" class="btn1">View Cart</a>
+                                                <a href="#" class="btn2">Checkout</a>
+                                            </p>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            </div>
+                            <div class="sing-in-btn">
+                                {% block fos_user_content %}
+                                    {% if app.user is not null%}
+
+                                        <a class= href="#" data-toggle="dropdown" id="profileDropdown">
+                                            <img src="{{ asset('userImages/') }}{{app.user.image}}" style="width: 50px ; height: 50px;border-radius: 50%;"/>
+
+                                        </a>
+
+                                        <a class="btn1" href="{{ path('fos_user_security_logout') }}">
+                                            <i class="ti-new-window text-primary"></i>
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+
+
+                                        </a>
+
+                                    {% else %}
+
+                                        <a class="btn1" href="{{ path('fos_user_security_login') }}">
+                                            <i class="ti-settings text-primary"></i>
+                                            Connecter
+                                        </a>
+
+                                    {% endif %}
+
+                                {% endblock %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endblock %}
+    </header>
+    <!--Header area end here-->
+    <!--Breadcumb area start here-->
+
+    <!--Breadcumb area end here-->
+    <!--Price area Start here-->
+    <section class="price-area section bg-img jarallax">
+        <div class="container">
+            {% block content %}
+
+
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <a id="count" class="close" disabled></a>
+
+                    <br><br>
+                    <div class="owl-carousel owl-theme full-width">
+                        {% for i in Publicite %}
+                            {% if i.position == 3 and i.etat ==0 %}
+
+
+                                <div class="item">
+                            {% if i.image|split('.')|last == "mp4"  %}
+                                    <video id="vid" height="420px" width="1180px"  controls autoplay muted >
+                                        <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/mp4">
+                                        <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/ogg">
+                                    </video>
+                               {% else %}
+                                   <img class="align-content-center" src="{{ asset('imagesPub/') }}{{i.image}}" style="height: 200px; width: 800px;" >
+                                   {% endif %}
+                                    {% if app.user is not null%}
+                                        {% set data1 = [] %}
+                                        {% for j in PubliciteA %}
+
+                                            {% set data1 = data1|merge([j.idPublicite]) %}
+
+                                        {% endfor %}
+
+
+
+
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <section class="about-area section bg-img jarallax">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <div class="section-heading2">
+                                <h2>Who We Are</h2>
+                            </div>
+                            <div class="about-contents">
+                                <p>With state-of-the-art indoor training facilities and full service custom shop on lion, we can accommodate most requests. All modern weapon enthussts can appreciate our broad services and real-world, experienced staff. With state-of-the-art indoor training facilities and full service.</p>
+                                <blockquote>“This kiosk will revolutionize the purchasing process of silencers, SBRs, ine ns and in the class 3 realm.we can accommodate most rests.”</blockquote>
+                                <p>All modern weaponts can appreciate our broad services and real-world, exper ienced taff.T fm nunc. Etiam pharetra, eratd fermentum feugiat, velit mauris aks egestasut aliquam akshay handge.</p>
+                                <div class="buttons">
+                                    <a href="#" class="btn1">Read More</a>
+                                    <a href="#" class="btn2">Our Shop</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-12 ">
+                            <div class="about-cata">
+                                <div class="cata-list list-t1">
+                                    <div class="dbox">
+                                        <div class="dleft">
+                                            <div class="content">
+                                                <h4>Hunting</h4>
+                                                <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="dright">
+                                            <div class="cate-ico">
+                                                <img src="assets/images/icons/01.png" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cata-list list-t2">
+                                    <div class="dbox">
+                                        <div class="dleft">
+                                            <div class="content">
+                                                <h4>Trainning</h4>
+                                                <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="dright">
+                                            <div class="cate-ico">
+                                                <img src="assets/images/icons/02.png" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cata-list list-t1">
+                                    <div class="dbox">
+                                        <div class="dleft">
+                                            <div class="content">
+                                                <h4>Shoot Range</h4>
+                                                <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="dright">
+                                            <div class="cate-ico">
+                                                <img src="assets/images/icons/03.png" alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <section class="banner-area3 section af bg-img jarallax">
+            <div class="owl-carousel owl-theme full-width">
+                {% for i in Publicite %}
+                    {% if i.position == 2 and i.etat ==0 %}
+                        <div class="item">
+                            {% if i.image|split('.')|last == "mp4"  %}
+                                <video id="vid" height="420px" width="1180px" style="height: 200px; width: 800px; margin-left: 350px;"  controls autoplay muted >
+                                    <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/mp4">
+                                    <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/ogg">
+                                </video>
+                            {% else %}
+                                <img class="align-content-center" src="{{ asset('imagesPub/') }}{{i.image}}" style="height: 200px; width: 800px; margin-left: 350px;" >
+                            {% endif %}
+                            {% if app.user is not null%}
+                                {% set data1 = [] %}
+                                {% for j in PubliciteA %}
+
+                                    {% set data1 = data1|merge([j.idPublicite]) %}
+
+                                {% endfor %}
+
+
+                                {% if i.idPublicite in data1  %}
+                                    <a style="margin-left: 680px"  href= "{{path ('supprime',{'id' : i.idPublicite}) }} " class="btn1" >Dislike</a>
+                                {% else %}
+                                    <a style="margin-left: 680px"  href= "{{path ('publiciteAimer_ajout',{'id' : i.idPublicite}) }} " class="btn1" >like</a>
+                                {% endif %}
+
+
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+        <section class="events-area section bg-img jarallax">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-heading">
+                            <h2>Upcoming Events</h2>
+                            <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading1">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="cnc">
+                                        <h3>Modern Weapon Trainning Seminar</h3>
+                                        <ul>
+                                            <li><i class="far fa-calendar"></i><span>July 25, 2017</span></li>
+                                            <li><i class="far fa-clock"></i><span>EST 11.00 to 5.00</span></li>
+                                            <li><i class="fas fa-map-marker-alt"></i><span>121, King Street, Melbourne</span></li>
+                                        </ul>
+                                        <span class="arrows">01</span>
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                                    <div class="panel-body">
+                                        <p>Weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum feugiat, gun are best velit mauris aks egestasut aliquam. This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor. Read More</p>
+                                        <div class="col-sm-8 pd-0">
+                                            <div class="events-img">
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/3.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading2">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapseOne" class="cnc btncnc">
+                                        <h3>Modern Weapon Trainning Seminar</h3>
+                                        <ul>
+                                            <li><i class="far fa-calendar"></i><span>July 25, 2017</span></li>
+                                            <li><i class="far fa-clock"></i><span>EST 11.00 to 5.00</span></li>
+                                            <li><i class="fas fa-map-marker-alt"></i><span>121, King Street, Melbourne</span></li>
+                                        </ul>
+                                        <span class="arrows">02</span>
+                                    </a>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                    <div class="panel-body">
+                                        <p>Weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum feugiat, gun are best velit mauris aks egestasut aliquam. This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor. Read More</p>
+                                        <div class="col-sm-8 pd-0">
+                                            <div class="events-img">
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/3.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading3">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapseOne" class="cnc btncnc">
+                                        <h3>Modern Weapon Trainning Seminar</h3>
+                                        <ul>
+                                            <li><i class="far fa-calendar"></i><span>July 25, 2017</span></li>
+                                            <li><i class="far fa-clock"></i><span>EST 11.00 to 5.00</span></li>
+                                            <li><i class="fas fa-map-marker-alt"></i><span>121, King Street, Melbourne</span></li>
+                                        </ul>
+                                        <span class="arrows">03</span>
+                                    </a>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                    <div class="panel-body">
+                                        <p>Weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum feugiat, gun are best velit mauris aks egestasut aliquam. This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor. Read More</p>
+                                        <div class="col-sm-8 pd-0">
+                                            <div class="events-img">
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/3.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/1.jpg" alt="" /></div>
+                                                <div><img src="assets/images/events/2.jpg" alt="" /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="banner-area3 section af bg-img jarallax">
+            <div class="owl-carousel owl-theme full-width">
+                {% for i in Publicite %}
+                    {% if i.position == 1 and i.etat ==0 %}
+                        <div class="item">
+                            {% if i.image|split('.')|last == "mp4"  %}
+                                <video id="vid" height="420px" width="1180px" style="height: 200px; width: 800px; margin-left: 350px;"  controls autoplay muted >
+                                    <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/mp4">
+                                    <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/ogg">
+                                </video>
+                            {% else %}
+                                <img class="align-content-center" src="{{ asset('imagesPub/') }}{{i.image}}" style="height: 200px; width: 800px; margin-left: 350px;" >
+                            {% endif %}
+
+
+                            {% if app.user is not null%}
+                                {% set data1 = [] %}
+                                {% for j in PubliciteA %}
+
+                                    {% set data1 = data1|merge([j.idPublicite]) %}
+
+                                {% endfor %}
+
+
+                                {% if i.idPublicite in data1  %}
+                                    <a style="margin-left: 680px"  href= "{{path ('supprime',{'id' : i.idPublicite}) }} " class="btn1" >Dislike</a>
+                                {% else %}
+                                    <a style="margin-left: 680px"  href= "{{path ('publiciteAimer_ajout',{'id' : i.idPublicite}) }} " class="btn1" >like</a>
+                                {% endif %}
+
+
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+        {% endblock %}
+
+    </section>
+    <!--Price area End here-->
+    <!--Trainning area Start here-->
+
+    <!--Trainning area End here-->
+    <!--Partner area start here-->
+
+    <!--Partner area End here-->
+    <!--Subscribe area start here-->
+    <section class="subscribe-area">
+        <div class="container">
+            {% block bottombar %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="subscribe">
+                            <span class="ico"><i class="far fa-envelope"></i></span>
+                            <div class="conts">
+                                <h2>Get Our Latest News</h2>
+                                <p>Subscribe our Newsletter Now !</p>
+                            </div>
+                            <form>
+                                <input type="email" placeholder="Email Address">
+                                <button type="submit" class="btn1">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </section>
+    <!--Subscribe area End here-->
+    <!--Footer area start here-->
+{% block footer %}
+    <footer class="jarallax" data-jarallax-original-styles="null" style="z-index: 0; background-image: none; background-attachment: scroll; background-size: auto;">
+        <div class="footer-top section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="foo-about">
+                            <figure><img src="assets/images/logo/logo.png" alt=""></figure>
+                            <div class="contents">
+                                <p>All modern weaponts can apprecie our broad services akshay handge phatum feugiat gun. This is Photo shop's version of Lorem.</p>
+                                <a href="#" class="btn3">read more <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <ul class="foo-social">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <h2>latest News</h2>
+                        <div class="foo-news">
+                            <div class="newslists">
+                                <div class="dbox">
+                                    <div class="dleft">
+                                        <figure><img src="assets/images/blog/sm-1.jpg" alt=""></figure>
+                                    </div>
+                                    <div class="dright">
+                                        <div class="content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="newslists">
+                                <div class="dbox">
+                                    <div class="dleft">
+                                        <figure><img src="assets/images/blog/sm-2.jpg" alt=""></figure>
+                                    </div>
+                                    <div class="dright">
+                                        <div class="content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <h2>Product Shop</h2>
+                        <div class="products-foo">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm1.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm2.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm3.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm4.jpg" alt=""></a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="copyright sm-t-center">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="foo-links sm-t-center">
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Copyright Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-1" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/banner/bg-6.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1400.54px; height: 852.5px; overflow: hidden; pointer-events: none; margin-left: -91.7679px; margin-top: 42.25px; visibility: visible; transform: translate3d(0px, 42.3906px, 0px);"></div></div></footer>
+
+
+{% endblock %}
+
+    <!--Footer area end here-->
+
+
+    <!-- All JavaScript Here -->
+{% block script %}
+
+    <!-- jQuery latest version -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+
+
+        // When the user clicks the button, open the modal
+        {% for i in Publicite %}
+        {% if i.position == 3 and i.etat ==0 %}
+        modal.style.display = "block";
+        {% endif %}
+        {% endfor %}
+        // When the user clicks on <span> (x), close the modal
+
+
+        // When the user clicks anywhere outside of the modal, close it
+
+    </script>
+    <script src="{{ asset('front/js/vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- tether JavaScript -->
+    <script src="{{ asset('front/js/tether.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+    <!-- Owl.carousel JavaScript -->
+    <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+    <!-- Bxslider JavaScript -->
+    <script src="{{ asset('front/js/jquery.bxslider.min.js') }}"></script>
+    <!-- isotope JavaScript -->
+    <script src="{{ asset('front/js/isotope.pkgd.min.js') }}"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- meanmenu JavaScript -->
+    <script src="{{ asset('front/js/jquery.meanmenu.js') }}"></script>
+    <!-- jarallax JavaScript -->
+    <script src="{{ asset('front/js/jarallax.min.js') }}"></script>
+    <!-- jQuery-ui JavaScript -->
+    <script src="{{ asset('front/js/jquery-ui.min.js') }}"></script>
+    <!-- Progressbar Animation JavaScript -->
+    <script src="{{ asset('front/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('front/js/jquery.counterup.min.js') }}"></script>
+    <!-- masonry JavaScript -->
+    <script src="{{ asset('front/js/masonry.pkgd.min.js') }}"></script>
+    <!-- bootstrap-touchspin JavaScript -->
+    <script src="{{ asset('front/js/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <!-- downCount JavaScript -->
+    <script src="{{ asset('front/js/jquery.downCount.js') }}"></script>
+    <!-- wow JavaScript -->
+    <script src="{{ asset('front/js/wow.min.js') }}"></script>
+    <!-- slick JavaScript -->
+    <script src="{{ asset('front/js/slick.min.js') }}"></script>
+    <!-- Plugins JavaScript -->
+    <script src="{{ asset('front/js/plugins.js') }}"></script>
+    <!-- Init JavaScript -->
+    <script src="{{ asset('front/js/main.js') }}"></script>
+    <script src="{{ asset('vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/owl-carousel.js') }}"></script>
+    <script>
+        function countDown(secs,elem) {
+
+            var modal = document.getElementById("myModal");
+            var pause = document.getElementById("vid");
+            var element = document.getElementById(elem);
+
+            element.innerHTML = " Please wait for "+secs+" seconds";
+            if(secs < 1) {
+                clearTimeout(timer);
+                element.innerHTML = "";
+                window.onclick = function(event) {
+                    $('#vid').prop('muted', true);
+                    if (event.target == modal) {
+
+
+
+                        $('.modal').hide();
+
+
+                    }
+                }
+
+            }
+            secs--;
+            var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
+        }
+    </script>
+
+    <script>
+        countDown(10,"count");
+
+    </script>
+
+{% endblock %}
+    <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fas fa-angle-up"></i></a>
+
+
+{% endblock %}
+
+
+</body></html>

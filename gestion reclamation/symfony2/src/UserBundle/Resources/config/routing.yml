@@ -1,0 +1,8 @@
+Page_Client:
+    path:     /
+    defaults: { _controller: HuntkingdomBundle:produit:afficherProduit}
+
+
+Page_Agent:
+    resource: "@HuntkingdomBundle/Resources/config/routing.yml"
+     prefix:   /

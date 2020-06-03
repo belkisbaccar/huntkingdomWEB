@@ -1,0 +1,81 @@
+{% extends 'index.html.twig' %}
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Votre Participation</h2>
+                            <ul>
+                                <li><a href="{{ path('front') }}">Home</a></li>
+                                <li><a href="javascript:void(0)">Participation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>
+{%  endblock %}
+{% block content %}
+
+
+                    <section >
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="section-heading2">
+                                        <h2>Nos Evenements</h2>
+                                        <div class="speakers-slider">
+                                            {% for f in participations %}
+                                            <div class="sp-list">
+                                                <figure> <img class="editbtn"  src="{{ asset('imagesEvent/') }}{{f.idEvent.image}}" ></figure>
+                                                <div class="con">
+                                                    <a href="#">{{ f.idEvent.titreEvent }}</a>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <br><br><br>
+                                        <h2 style="font-size: x-large" ><a href="{{ path('UserAfficheParticipationtrier') }}">Trier selon datedebut</a></h2>
+
+                                    </div>
+                                    <br><br><br><br>
+
+                                    </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="event-schedule">
+                                        <div class="section-heading2">
+                                            <h2>Vos Participations</h2></div>
+
+                                        <table class="table table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <th><span>Titre</span></th>
+                                                <th><span>DateDebut</span></th>
+                                                <th><span>DtaeFin</span></th>
+                                                <th><span>Date Reservation</span></th>
+                                                <th><span>Action</span></th>
+                                            </tr>
+                                            {% for f in participations %}
+                                            <tr>
+                                                <td><strong>{{ f.idEvent.titreEvent }}</strong></td>
+                                                <td><strong>{{ f.idEvent.dateDebutEvent | date('l , Y-m-d ')}}</strong></td>
+                                                <td><strong>{{ f.idEvent.dateFinEvent | date('l , Y-m-d ') }}</strong></td>
+                                                <td><strong>{{ f.dateReservation | date('l , Y-m-d ') }}</strong></td>
+                                                <td> <a href="{{path ('participation_supprimerparticipation',{'id' : f.idParticipation}) }}">annuler</a>
+                                                <td> <a href="{{path ('Pdf',{'id' : f.idParticipation})}}">imprimer</a>
+
+
+
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                    </section>
+{% endblock %}

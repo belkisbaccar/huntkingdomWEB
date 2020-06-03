@@ -1,0 +1,42 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    <div class="row grid-margin">
+    <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste Des Reponses</h4>
+            <p class="card-description">Reponses</p>
+
+            <div id="js-grid" class="pt-3 jsgrid" style="position: relative; height: 516px; width: 100%;"><div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                    <table class="jsgrid-table">
+                        <tr class="jsgrid-header-row">
+                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 80px;">Utilisateur</th>
+                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 80px;">Reclamation</th>
+                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;"">Contenu</th>
+                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">Image</th>
+                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">Action</th>
+
+                        </tr>
+                        {% for r in reponses %}
+                            <tr class="jsgrid-filter-row">
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">{{r.idReclamation.getIdUser().getUsername()}}</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">{{r.idReclamation.getIdReclamation()}}</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">{{r.contenu}}</td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="{{ asset('images/') }}{{ r.image }}" style="width: 50px;height: 50px"></td>
+                                <td class="jsgrid-cell jsgrid-align-center" style="width: 200px;">
+
+                                    <a href = "{{path ('reponse_supprimerReponse',{'id' : r.idReponse}) }}" class="btn btn-inverse-primary btn-fw">Supprimer</a>
+                                    <a href = "{{path ('reponse_modifierReponse',{'id' : r.idReponse}) }}"  class="btn btn-inverse-success btn-fw">Modifier</a>
+
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

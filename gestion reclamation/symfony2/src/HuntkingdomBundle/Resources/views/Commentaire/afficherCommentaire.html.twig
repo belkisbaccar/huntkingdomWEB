@@ -1,0 +1,47 @@
+{% extends 'backoffice.html.twig' %}
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+{% endblock %}
+{% block content %}
+    {% if Commentaire|length >0 %}
+    <div class="row grid-margin">
+    <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste Des Commentaire</h4>
+            <p class="card-description">Commentaire</p>
+
+                    <table id="order-listing" class="table">
+                        <tr class="jsgrid-header-row">
+                            <th  style="width: 70px;">id_commentaire</th>
+                            <th style="width: 150px;">Commentaire</th>
+
+
+
+                        </tr>
+                        {% for i in Commentaire %}
+                            <tr >
+                                <td style="width: 150px;">{{i.idCommentaire}}</td>
+                                <td  style="width: 150px;">{{i.commentaire}}</td>
+
+                                <td  style="width: 200px;">
+
+                                    <a href = "{{path ('commentaire_supprimerCommentaire',{'id' : i.idCommentaire}) }}" onclick="return confirm('vous voulez supprimer cet annonce?')" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                  {%  if i.idUser.id == user.id %}
+                                    <a href = "{{path ('commentaire_modifierCommentaire',{'id' : i.idCommentaire}) }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Modifier</a><br><br>
+
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+
+        </div>
+    </div>
+        <a href = "{{path ('annonce_afficher_back') }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">retour</a><br><br>
+
+    {% endif %}
+{% endblock %}

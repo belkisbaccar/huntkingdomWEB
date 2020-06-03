@@ -1,0 +1,27 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ajouter Reponse</h4>
+
+                {{ form_start(form, { 'attr' : { 'class' : 'sample-sample' } }) }}
+
+                <div class="form-group">
+                    <label for="exampleInputEmail3">description</label>
+                    {{ form_widget(form.contenu, { 'attr' : { 'class' : 'form-control' } },{'value' : 'Default title'} ) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Image</label>
+                    {{ form_widget(form.file,{ 'attr' : { 'class' : 'dropify' } } ) }}
+                </div>
+
+                {{ form_widget(form.repondre, { 'attr' : { 'class' : 'btn btn-gradient-primary mr-2' } } ) }}
+
+                <button class="btn btn-light">Cancel</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

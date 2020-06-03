@@ -1,0 +1,143 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['note', 'note = 5 ', 'note = 4 ', 'note = 3 ', 'note = 2 ',
+                    'note = 1 ', 'note = 0 ', { role: 'annotation' } ],
+                ['<= 3 jours', {{ taux_note5_5j*100 }}, {{ taux_note4_5j*100 }}, {{ taux_note3_5j*100 }}, {{ taux_note2_5j*100 }}, {{ taux_note1_5j*100 }}, {{ taux_note0_5j*100 }}, ''],
+                ['> 3 et <= 5 jours', {{ taux_note5_35j*100 }}, {{ taux_note4_35j*100 }}, {{ taux_note3_35j*100 }}, {{ taux_note2_35j*100 }}, {{ taux_note1_35j*100 }}, {{ taux_note0_35j*100 }}, ''],
+                ['> 5 jours', {{ taux_note5_3j*100 }}, {{ taux_note4_3j*100 }}, {{ taux_note3_3j*100 }}, {{ taux_note2_3j*100 }}, {{ taux_note1_3j*100 }}, {{ taux_note0_3j*100 }}, '']
+            ]);
+
+            var options = {
+
+
+                isStacked: true,
+
+                legend: {position: 'top', maxLines: 3},
+                hAxis: {
+                    minValue: 0,
+                    ticks: [0, .3, .6, .9, 1]
+                },
+                colors: ['#9e0917', '#d95f02', '#7570b3']
+
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Période', 'intervalle de jour'],
+                ['> 5 jours',     {{ taux_reponse_5j*100 }}],
+                ['> 3 et <= 5 jours',      {{ taux_reponse_3j_5j*100 }}],
+                ['<= 5 jours',  {{ taux_reponse_3j*100 }}],
+
+            ]);
+
+            var options = {
+                title: '',
+                pieHole: 0.5,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+    <link rel="stylesheet" href="{{ asset('vendors/counter/vendor.bundle.base.css') }}">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Statistiques de l'algorithme de satisfactions</h4>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="table-responsive">
+
+                        <!-- start count stats -->
+
+                        <section id="counter-stats" class="wow fadeInRight" data-wow-duration="1.4s">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-lg-3 stats">
+                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                        <div class="counting" data-count="{{ taux_reponse_reclamation*100  }}">%</div>%
+                                        <h5>le taux de réponses par réclamations</h5>
+                                    </div>
+
+                                    <div class="col-lg-3 stats">
+                                        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                                        <div class="counting" data-count="{{ taux_reponse_5j*100  }}">%</div>%
+                                        <h5>plus que 5 jours à répondre</h5>
+                                    </div>
+
+                                    <div class="col-lg-3 stats">
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                        <div class="counting" data-count="{{ taux_reponse_3j_5j*100  }}">%</div>%
+                                        <h5>entre 3 et 5 jours jours à répondre</h5>
+                                    </div>
+
+                                    <div class="col-lg-3 stats">
+                                        <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+                                        <div class="counting" data-count="{{ taux_reponse_3j*100 }}">%</div>%
+                                        <h5>moins que 3 jours à répondre</h5>
+                                    </div>
+
+
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end container -->
+
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <section id="2" class="wow fadeInRight" data-wow-duration="1.4s">
+            <h4>les pourcentages de réclamtions traitées ayant une réponses selon les périodes de temps</h4>
+                <br><br>
+            <div class="container">
+                <div class="row">
+                    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+
+            </div>
+            </div>
+            </section>
+
+        </div>
+        <div class="card-body">
+            <section id="3" class="wow fadeInRight" data-wow-duration="1.4s">
+                <h4>les pourcentages des réclamation traitées en fonction de la période de temps prise pour répondre et leurs notes :</h4>
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

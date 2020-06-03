@@ -1,0 +1,281 @@
+{% extends 'index.html.twig' %}
+
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Our products</h2>
+                            <ul>
+                                <li><a href="{{ path('front') }}">Home</a></li>
+                                <li><a href="javascript:void(0)">shop</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>
+{%  endblock %}
+{% block cart %}
+        <div class="widget_shopping_cart_content">
+        <ul class="product_list_widget ">
+
+        </ul>
+        <!-- /.product_list_widget -->
+
+        <p class="buttons">
+            <a href=" {{path ('show_panier') }}" class="btn1">View Cart</a>
+            <a href="#" class="btn2">Checkout</a>
+        </p>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <style>
+        .flag-discount {
+            border-radius: 6px 0 0 6px;
+            color: #fff;
+            display: block;
+            float: left;
+            padding: 10px 20px;
+            background: #93274f;
+            font-size: 20px;
+            font-weight: 400;
+            position: relative;
+        }
+        .flag-discount::before,
+        .flag-discount::after {
+            content: "";
+            position: absolute;
+            left: 100%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            display: block;
+        }
+        .flag-discount::before {
+            top: 0;
+            border-width: 22px 15px 0 0;
+            border-color: #93274f transparent transparent transparent;
+        }
+        .flag-discount::after {
+            bottom: 0;
+            border-width: 0 15px 22px 0;
+            border-color: transparent transparent #93274f transparent;
+        }
+    </style>
+    <section class="shop-page section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="sibebar">
+                        <div class="wighet search">
+                            <form>
+                                <input type="search" placeholder="Search here" id="speechToText" name="speechToText">
+                                <button type="button" disabled><i class="fas fa-microphone"  onclick=record()></i></button>
+
+                                <ul class="nav" id="side-menu">
+                                    <li>
+                                        <a href="#"> Entities<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level" id="entitiesNav">
+                                        </ul>
+                                    </li>
+                                </ul><br><br><br><br>
+                            </form>
+                                <script>
+                                    function record() {
+                                        var nameInput = document.getElementById('speechToText');
+                                        var recognition = new webkitSpeechRecognition();
+                                        recognition.lang = "en-GB";
+
+                                        recognition.onresult = function(event) {
+                                            // console.log(event);
+                                          document.getElementById('speechToText').value = event.results[0][0].transcript;
+
+
+
+                                        }
+                                        console.log(nameInput.value);
+
+                                        recognition.start();
+
+
+
+                                    }
+                                </script>
+                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                <script type="text/javascript">
+
+                                    var nameInput = document.getElementById('speechToText');
+                                    console.log(nameInput.value);
+                                    jQuery(document).ready(function() {
+
+                                        var searchRequest = null;
+                                        $("#speechToText").keyup(function() {
+                                            var minlength = 1;
+                                            var that = this;
+                                            var value = $(this).val();
+                                            var entitySelector = $("#entitiesNav").html('');
+                                            if (value.length >= minlength ) {
+                                                if (searchRequest != null)
+                                                    searchRequest.abort();
+                                                searchRequest = $.ajax({
+                                                    type: "GET",
+                                                    url: "{{ path('ajax_search') }}",
+                                                    data: {
+                                                        'q' : value
+                                                    },
+                                                    dataType: "text",
+                                                    success: function(msg){
+                                                        //we need to check if the value is the same
+                                                        if (value===$(that).val()) {
+                                                            var result = JSON.parse(msg);
+                                                            $.each(result, function(key, arr) {
+                                                                $.each(arr, function(id, value) {
+                                                                    if (key === 'posts') {
+                                                                        if (id !== 'error') {
+                                                                            console.log(value[1]);
+                                                                            var f= value[0];
+                                                                            console.log(f);
+                                                                            entitySelector.append('<li><b>'+value[1]+'</b>'+'<img src="uploads/images/'+value[0]+'" style="width: 50px; height: 50px"/>'+'</li>')
+                                                                        } else {
+                                                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                                        }
+                                                                    }
+                                                                });
+                                                            });
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    });
+                                </script>
+
+                        </div>
+                        <div class="wighet categories">
+                            <h3>Pro<span>ducts</span></h3>
+                            <ul>
+                                {% for e in posts %}
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i>{{e.nom}} </a></li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-9 pd-0">
+                    <div class="col-sm-12">
+                        <div class="filter-area">
+
+                            <div class="list-grid">
+                                <ul class="list-inline">
+                                    <li><a href="#" id="gridview"><i class="fa fa-th"></i></a></li>
+                                    <li><a href="#" id="listview"><i class="fa fa-list"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% for e in posts %}
+                        <div class="col-sm-12 pd-0" id="lol">
+                            <div class="col-sm-4 products">
+                                {% if e.prixPromo > 0 %}
+                                    <span class="flag-discount">{{ (e.prix-e.prixPromo)*100/e.prix }}% Off</span>
+                                    <br>
+                                    <br>
+                                {% endif %}
+                                <figure><img src="{{asset('uploads/images/') }}{{e.image}}" alt=""></figure>
+                                <div class="contents">
+                                    <h3>{{e.nom}}</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                                  {% if e.prixPromo > 0 %}
+                                    <span><strike> Prix: {{e.prix}}dt</strike></span>
+                                    <span>Prix Promo :{{ e.prixPromo }}dt</span>
+                                    {% else %}
+                                        <span>Prix: {{e.prix}}.dt</span>
+                                        {% endif %}
+                                    {% if app.user is not null%}
+                                    <a href=" {{path ('add_panier',{'id' : e.id}) }}" class="btn4">Add To Cart</a>
+                                        <a href="{{path ('reclamation_ajout_front',{'id' : e.id}) }}" class="btn4">Reclamer</a>
+
+                                        <br>
+                                        <br>
+                                        {{ pinterestButton() }} {{ twitterButton() }} {{ facebookButton() }}
+                                          {% else %}
+                                              <a href="{{ path('Register') }} " class="btn4">Add To Cart</a>
+                                              {{ facebookButton() }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+                    <div class="col-sm-12">
+                        <div class="paginations">
+                            <ul>
+                                {{ knp_pagination_render(posts) }}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="products-area section4 bg-img jarallax">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-heading">
+                    <h2>Our Products</h2>
+                    <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                </div>
+            </div>
+        </div>  <div class="container">
+
+            <div class="row" align="center">
+                <div class="col-md-12 col-sm-12 pd-0">
+                    <div class="pro-sliders owl-carousel owl-theme" style="opacity: 1; display: block;">
+                        <div class="owl-wrapper-outer">
+                            <div class="owl-wrapper" style="width: 4102px; left: 0px; display: block; transition: all 400ms ease 0s; transform: translate3d(-293px, 0px, 0px);">
+                                {% for e in posts %}
+                                <div class="owl-item" style="width: 293px;"><div class="col-sm-12" align="right">
+                                        <div class="products" align="center">
+                                            <figure><img src="{{asset('uploads/images/') }}{{e.image}}" alt=""></figure>
+                                            <div class="contents">
+                                                <h3>{{ e.nom }}</h3>
+                                                <span>{{e.prix}}.dt</span>
+                                                {% if app.user is not null%}
+                                                    <a href=" {{path ('add_panier',{'id' : e.id}) }}" class="btn4">Add To Cart</a>
+                                                {% else %}
+                                                    <a href="{{ path('Register') }} " class="btn4">Add To Cart</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

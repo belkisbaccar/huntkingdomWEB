@@ -1,0 +1,73 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data table</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="order-listing" class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Region</th>
+                                <th>Animal</th>
+                                <th>type</th>
+                                <th>Date Debut</th>
+                                <th>Date Fin</th>
+                                <th>etat</th>
+
+                                <th style="width: 60px; ">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for e in chasse %}
+                                {% if e.etat == 1 %}
+                                <tr>
+                                    <td class="alert-danger" >{{e.region}}</td>
+                                    <td class="alert-danger"> {{e.animal}}</td>
+                                    <td class="alert-danger">{{e.type}}</td>
+                                    <td class="alert-danger">{{e.dateDebut|date("m/d/Y")}}</td>
+                                    <td class="alert-danger">{{e.dateFin|date("m/d/Y")}}</td>
+                                    <td class="alert-danger">Desactivee</td>
+
+                                    <td class="alert-danger" >
+                                        <a href = "{{path ('chasse_deleteChasse',{'id' : e.id}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+
+                                        <a href= "{{path ('chasse_modifChasse',{'id' : e.id}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a>
+
+
+                                    </td>
+
+
+                                </tr>
+                                    {% else %}
+                                        <tr>
+                                        <td >{{e.region}}</td>
+                                        <td> {{e.animal}}</td>
+                                        <td>{{e.type}}</td>
+                                        <td>{{e.dateDebut|date("m/d/Y")}}</td>
+                                        <td>{{e.dateFin|date("m/d/Y")}}</td>
+                                        <td>Active</td>
+                                        <td >
+                                            <a href = "{{path ('chasse_deleteChasse',{'id' : e.id}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+
+                                            <a href= "{{path ('chasse_modifChasse',{'id' : e.id}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a>
+
+
+                                        </td>
+
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

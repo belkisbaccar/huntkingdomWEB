@@ -1,0 +1,75 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data table</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="order-listing" class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Nom Produit</th>
+                                <th>Image</th>
+                                <th>taux</th>
+                                <th>Date Debut</th>
+                                <th >Date Fin</th>
+
+
+                                <th style="width: 60px; ">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for e in Promotion %}
+                                <tr>
+
+                                    {% if "now"|date('Y-m-d') > e.dateFin|date('Y-m-d') or e.etat==1 %}
+
+                                        <td class="alert-danger"  >{{e.Product.nom}}</td>
+                                        <td class="alert-danger" > <img style="width: 50px; height: 40px;"  src="{{ asset('uploads/images/') }}{{e.Product.image}}" ></td>
+                                        <td class="alert-danger" >{{e.taux}}</td>
+
+                                        <td class="alert-danger" >{{e.dateDebut|date("m/d/Y")}}</td>
+                                        <td class="alert-danger" >{{e.dateFin|date("m/d/Y")}}</td>
+
+                                        <td class="alert-danger" >
+                                            <a href = "{{path ('promotion_supprimerPromotion',{'id' : e.idPromotion}) }} " style="width:120px;"  data-toggle="modal" data-target="#exampleModal-2" class="btn btn-inverse-primary btn-fw">Supprimer</a>
+
+                                            <a style="width: 120px;" href= "{{path ('promotion_updatePromotion',{'id' : e.idPromotion}) }} " class="btn btn-inverse-success btn-fw" >Activer</a>
+
+                                        </td>
+
+
+                                    {% else %}
+                                        <td >{{e.Product.nom}}</td>
+                                        <td> <img style="width: 50px; height: 40px;"  src="{{ asset('uploads/images/') }}{{e.Product.image}}" ></td>
+                                        <td>{{e.taux}}</td>
+
+                                        <td>{{e.dateDebut|date("m/d/Y")}}</td>
+                                        <td>{{e.dateFin|date("m/d/Y")}}</td>
+
+                                        <td >
+                                            <a href = "{{path ('promotion_supprimerPromotion',{'id' : e.idPromotion}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+
+                                            <a href= "{{path ('promotion_updatePromotion',{'id' : e.idPromotion}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a>
+                                            <a  href= "{{path ('promotion_desactiverPromotion',{'id' : e.idPromotion}) }} " class="btn btn-gradient-danger">Desactiver</a>
+
+
+                                        </td>
+                                    {% endif %}
+
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

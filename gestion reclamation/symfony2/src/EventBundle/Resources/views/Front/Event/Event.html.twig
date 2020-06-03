@@ -1,0 +1,156 @@
+{% extends 'index.html.twig' %}
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Events</h2>
+                            <ul>
+                                <li><a href="{{ path('front') }}">Home</a></li>
+                                <li><a href="javascript:void(0)">Event</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>
+{%  endblock %}
+{% block content %}
+
+    <section class="event-details section">
+        <div class="container">
+            <div>
+                <label>
+                    <input onkeyup="searchActualite(this)" type="text"/>
+                </label>
+            </div>
+            <div  id="aff">
+            {% for e in evenement %}
+                <div class="row" >
+                    <div class="col-md-3 col-sm-12" >
+                        <div class="buyticket">
+                            <figure>
+                                <img class="editbtn"  src="{{ asset('imagesEvent/') }}{{e.image}}" >
+                            </figure>
+                            <div class="con">
+                                <p class="mr-b15">Nos Informations</p><br><br>
+                                <p class="mr-b15">Nombre de place:</p><br>
+                                <strong>{{e.nbPlaceEvent}}</strong><br>
+                                <p class="mr-b15">Date Debut:</p><br>
+                                <strong>{{e.dateDebutEvent|date("m/d/Y")}}</strong><br>
+                                <p class="mr-b15">Date fin:</p><br>
+                                <strong>{{e.dateFinEvent|date("m/d/Y")}}</strong><br>
+                                {% if e.nbPlaceEvent>0  and is_granted("ROLE_USER")%}
+                                    <a href="{{ path('participation_ajoutparticipation',{'id':e.idEvent })}}" class="btn1">Participé</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-sm-12">
+                        <div class="descriptions">
+                            <ul class="eventleft">
+                                <li><span >{{e.titreEvent}}</span>
+
+                                </li>
+                            </ul>
+                            <div class="product-review">
+                                <ul>
+                                    <li><i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                        <a href="#"> Add Your Review</a>
+                                    </li>
+                                </ul>
+                            </div><br><br>
+                            <div class="event-des">
+                                <div class="section-heading2">
+                                    <h2>Event description</h2>
+                                    <p>{{e.descriptionEvent}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br><br><br>
+            {% endfor %}
+        </div>
+        </div>
+
+    </section>
+    <script>
+        function searchActualite(text) {
+            $.ajax({
+                url: '{{ path('filterEvent') }}',
+                type: 'post',
+                data: {'nom': text.value},
+                success: function (data) {
+                    $('#aff').empty();
+                    $.each(data, function (index, obj) {
+                        var formattedDateStartDate = new Date(obj.dateDebutEvent['timestamp'] * 1000);
+                        var formattedDateFinDate = new Date(obj.dateFinEvent['timestamp'] * 1000);
+                        var d = formattedDateStartDate.getDate();
+                        var m =  formattedDateStartDate.getMonth();
+                        m += 1;  // JavaScript months are 0-11
+                        var y = formattedDateStartDate.getFullYear();
+
+                        var d1 = formattedDateFinDate.getDate();
+                        var m1 =  formattedDateFinDate.getMonth();
+                        m1 += 1;  // JavaScript months are 0-11
+                        var y1 = formattedDateFinDate.getFullYear();
+
+                        var URL = '{{ asset('imagesEvent') }}';
+                        URL=URL.replace("imagesEvent",obj.image);
+                        var URL2='{{ path('participation_ajoutparticipation',{'id':'obj.idEvent'}) }}';
+                        URL2=URL2.replace("obj.id",obj.idEvent);
+                        $('#aff').append('<div class="row">\n' +
+                            '            <div class="col-md-3 col-sm-12">\n' +
+                            '                <div class="buyticket">\n' +
+                            '                    <figure>\n' +
+                            '                                <img class="editbtn"  src="'+URL+'" >\n' +
+                            '                            </figure>\n' +
+                            '                    <div class="con">\n' +
+                            '                        <p class="mr-b15">Nos Informations</p><br><br>\n' +
+                            '                        <p class="mr-b15">Nombre de place:</p><br>\n' +
+                            '                        <strong>' + obj.nbPlaceEvent + '</strong><br>\n' +
+                            '                        <p class="mr-b15">Date Debut:</p><br>\n' +
+                            '                        <strong>' + (d + "/" + m + "/" + y) + '</strong><br>\n' +
+                            '                        <p class="mr-b15">Date fin:</p><br>\n' +
+                            '                        <strong>' +  (d1 + "/" + m1 + "/" + y1)  + '</strong><br>\n' +
+                            '                      \n' +
+                            '                        <a href="'+URL2+'" class="btn1">Participé</a>\n' +
+                            '                        \n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '            <div class="col-md-9 col-sm-12">\n' +
+                            '                <div class="descriptions">\n' +
+                            '                    <ul class="eventleft">\n' +
+                            '                        <li><span >' + obj.titreEvent + '</span>\n' +
+                            '\n' +
+                            '                        </li>\n' +
+                            '                    </ul>\n' +
+                            '                    <div class="event-des">\n' +
+                            '                        <div class="section-heading2">\n' +
+                            '                            <h2>Event description</h2>\n' +
+                            '                            <p>' + obj.descriptionEvent + '</p>\n' +
+                            '                        </div>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '        </div>')
+                    })
+                },
+                error: function(error){
+                    alert('error');
+                    alert(error)
+                }
+            });
+            text.preventDefault()
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,254 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .dot {
+            height: 15px;
+            width: 15px;
+            background-color: #418b69;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .notification {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        .notification:hover {
+            background: red;
+        }
+
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+        }
+    </style>
+
+    <a style="right: -1080px ; top: -70px ; " href="#" class="notification"><i class="fa fa-bell"></i>
+{% if nbr3|length >0 or nbr2|length >0 or nbr1|length >0  %}
+        <span class="badge">{{ nbr3|length+nbr2|length+nbr1|length }}</span>
+
+
+
+    <div class="modal fade" id="supp1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 style="color: white">Réclamations Priorités</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="example1" class="table">
+                        <thead>
+                        <tr >
+                            <th> Priority </th>
+                            <th  style="width: 80px;">Utilisateur</th>
+                            <th  style="width: 70px;">Etat</th>
+
+                            <th  style="width: 70px;">Sujet</th>
+                            <th  style="width: 50px;">Id sujet</th>
+                            <th  style="width: 80px;">Image</th>
+
+                            <th  style="width: 100px;">Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for e in reclamations %}
+
+                            {%   if e.priority == 3 %}
+
+                                <tr >
+                                    <td class="alert-danger"> Level 3</td>
+                                    <td class="alert-danger"  style="width: 150px;">{{e.idUser.username}}</td>
+                                    <td class="alert-danger" style="width: 150px;">{{e.etat}}</td>
+
+                                    <td class="alert-danger"  style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null  %}
+                                            Produit
+                                        {% else %}
+                                            Annonce
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-danger" style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null %}
+                                            {{ e.idProduit.id }}
+                                        {% else %}
+                                            {{ e.idAnnonceReclame.idAnnonce }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-danger"  style="width: 150px;"><img src="{{ asset('images/') }}{{ e.image }}" style="width: 50px;height: 50px"></td>
+
+                                    <td class="alert-danger"  style="width: 200px;">
+
+                                        <a href = "{{path ('reclamation_supprimerReclamation',{'id' : e.idReclamation}) }}" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                        <a href = "{{path ('reclamation_traiterReclamation',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Traiter</a><br><br>
+                                        <a href = "{{path ('reponse_ajouterReponse',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Repondre</a>
+
+                                    </td>
+
+                                </tr>
+                            {% elseif e.priority == 2 %}
+
+                                <tr >
+                                    <td class="alert-warning"> Level 2</td>
+                                    <td class="alert-warning"  style="width: 150px;">{{e.idUser.username}}</td>
+                                    <td class="alert-warning" style="width: 150px;">{{e.etat}}</td>
+
+                                    <td class="alert-warning"  style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null  %}
+                                            Produit
+                                        {% else %}
+                                            Annonce
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-warning" style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null %}
+                                            {{ e.idProduit.id }}
+                                        {% else %}
+                                            {{ e.idAnnonceReclame.idAnnonce }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-warning"  style="width: 150px;"><img src="{{ asset('images/') }}{{ e.image }}" style="width: 50px;height: 50px"></td>
+
+                                    <td class="alert-warning"  style="width: 200px;">
+
+                                        <a href = "{{path ('reclamation_supprimerReclamation',{'id' : e.idReclamation}) }}" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                        <a href = "{{path ('reclamation_traiterReclamation',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Traiter</a><br><br>
+                                        <a href = "{{path ('reponse_ajouterReponse',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Repondre</a>
+
+                                    </td>
+
+                                </tr>
+
+                            {% elseif e.priority == 1 %}
+                                <tr >
+                                    <td class="alert-info"> Level 1</td>
+                                    <td class="alert-info"  style="width: 150px;">{{e.idUser.username}}</td>
+                                    <td class="alert-info" style="width: 150px;">{{e.etat}}</td>
+
+                                    <td class="alert-info"  style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null  %}
+                                            Produit
+                                        {% else %}
+                                            Annonce
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-info" style="width: 150px;">
+                                        {% if e.idAnnonceReclame is null %}
+                                            {{ e.idProduit.id }}
+                                        {% else %}
+                                            {{ e.idAnnonceReclame.idAnnonce }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="alert-info"  style="width: 150px;"><img src="{{ asset('images/') }}{{ e.image }}" style="width: 50px;height: 50px"></td>
+
+                                    <td class="alert-info"  style="width: 200px;">
+
+                                        <a href = "{{path ('reclamation_supprimerReclamation',{'id' : e.idReclamation}) }}" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                        <a href = "{{path ('reclamation_traiterReclamation',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Traiter</a><br><br>
+                                        <a href = "{{path ('reponse_ajouterReponse',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Repondre</a>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div  class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+    </a>
+
+
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Data table</h4>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table id="example2" class="table">
+                        <thead>
+                        <tr >
+                            <th  style="width: 80px;">Utilisateur</th>
+                            <th  style="width: 70px;">Etat</th>
+                            <th  style="width: 150px;">Description</th>
+                            <th  style="width: 70px;">Sujet</th>
+                            <th  style="width: 50px;">Id sujet</th>
+                            <th  style="width: 80px;">Image</th>
+                            <th  style="width: 50px;">Note</th>
+                            <th  style="width: 100px;">Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for e in reclamations %}
+                            <tr >
+                                <td  style="width: 150px;">{{e.idUser.username}}</td>
+                                <td  style="width: 150px;">{{e.etat}}</td>
+                                <td  style="width: 50px;">{{e.description}}</td>
+                                <td  style="width: 150px;">
+                                    {% if e.idAnnonceReclame is null  %}
+                                        Produit
+                                    {% else %}
+                                        Annonce
+                                    {% endif %}
+                                </td>
+                                <td  style="width: 150px;">
+                                    {% if e.idAnnonceReclame is null %}
+                                        {{ e.idProduit.id }}
+                                    {% else %}
+                                        {{ e.idAnnonceReclame.idAnnonce }}
+                                    {% endif %}
+                                </td>
+                                <td  style="width: 150px;"><img src="{{ asset('images/') }}{{ e.image }}" style="width: 50px;height: 50px"></td>
+                                <td  style="width: 50px;">{{e.note}}</td>
+                                <td  style="width: 200px;">
+
+                                    <a href = "{{path ('reclamation_supprimerReclamation',{'id' : e.idReclamation}) }}" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                    <a href = "{{path ('reclamation_traiterReclamation',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Traiter</a><br><br>
+                                    <a href = "{{path ('reponse_ajouterReponse',{'id' : e.idReclamation}) }}"  class="btn btn-inverse-success btn-fw jsgrid-align-center">Repondre</a>
+
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        <tbody>
+                    </table>
+
+                </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+{% endblock %}

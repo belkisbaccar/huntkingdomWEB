@@ -1,0 +1,85 @@
+{% extends 'index.html.twig' %}
+
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Annonces</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>
+{%  endblock %}
+{% block content %}
+<section class="blog-pages section">
+    <div class="container">
+        <div class="row">
+            {% for e in Annonce %}
+
+            <div class="col-sm-6">
+                <div class="blog-list">
+                    <figure>
+                         <img src="{{ asset('images/') }}{{ e.image }}">
+                        <div class="date">
+
+                        </div>
+                    </figure>
+                    <div class="content">
+                        <h3>{{e.Text}}</h3>
+                        <p>Ecrit par: {{e.user.username}}</p>
+                        {% if e.user.id == user.id  %}
+                            <a href = "{{path ('annonce_supprimerAnnonce_front',{'id' : e.idAnnonce}) }}" class="btn1">supprimer</a>
+                            <a href = "{{path ('annonce_modifierAnnonce_front',{'id' : e.idAnnonce}) }}" class="btn1">modifier</a>
+                        {% endif %}
+
+
+                        <a href = "{{path ('annonce_aime_front',{'id' : e.idAnnonce}) }}" class="btn-inverse-secondary">
+                            {% if e.etat==0  %}
+                             like
+                        {% else %}
+                        dislike
+                        {% endif %}</a>
+
+                        <br> <br> <br>
+                        <a href = "{{path ('afficherCommentaire_front',{'id' : e.idAnnonce}) }}" class="btn3">Voir commentaires <i class="fa fa-angle-double-right"></i></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="subscribe">
+
+                    <div class="conts">
+                        <h2></h2>
+                        <p>Exprimez Vous !</p>
+                    </div>
+                    <form>
+
+                        <a href = "{{path ('annonce_ajouterAnnonce_front') }}" class="btn1">Ajouter Annonce</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+
+

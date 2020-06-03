@@ -1,0 +1,52 @@
+
+
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /Event
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+huntkingdom:
+    resource: "@HuntkingdomBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_login:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+
+
+Page_Client:
+    path:     /front
+    defaults: { _controller: HuntkingdomBundle:publicite:afficherPubliciteFront }
+
+Page_Admin:
+    path:     /
+
+
+Register:
+    path:     /login
+
+
+graphe:
+    resource: "@GrapheBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mail:
+    resource: "@MailBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

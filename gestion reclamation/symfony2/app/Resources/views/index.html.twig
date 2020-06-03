@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!-- Mirrored from www.webstrot.com/html/weapon/services.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 18:21:30 GMT --><!-- Added by HTTrack -->
+
+
+<head>
+
+    {% block head %}
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Theme Title-->
+        <title>Huntkingdom</title>
+        <meta name="description" content="">
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
+
+        <!-- All css Here -->
+        <!-- All plugins css -->
+        <link rel="stylesheet" href="{{ asset('front/css/allplugins.css') }}">
+        <!-- Style css -->
+        <link rel="stylesheet" href="{{ asset('front/style.css') }}">
+        <!-- Responsive css -->
+        <link rel="stylesheet" href="{{ asset('front/css/responsive.css') }}">
+
+        <!-- Customization css -->
+        <!--If u need any change then use this css file-->
+        <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}">
+
+        <!-- Modernizr JavaScript -->
+        <script src="{{asset('front/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css" id="#jarallax-clip-0">#jarallax-container-0 {
+                clip: rect(0 1217px 420px 0);
+                clip: rect(0, 1217px, 420px, 0);
+            }</style><style type="text/css" id="#jarallax-clip-2">#jarallax-container-2 {
+            clip: rect(0 1217px 838px 0);
+            clip: rect(0, 1217px, 838px, 0);
+        }</style><style type="text/css" id="#jarallax-clip-4">#jarallax-container-4 {
+            clip: rect(0 1217px 768px 0);
+            clip: rect(0, 1217px, 768px, 0);
+        }</style><style type="text/css" id="#jarallax-clip-3">#jarallax-container-3 {
+            clip: rect(0 1217px 628.0625px 0);
+            clip: rect(0, 1217px, 628.0625px, 0);
+        }</style>
+
+    {% endblock %}
+</head>
+{% block backNavbar %}
+
+{% endblock %}
+<body>
+{% block body %}
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;"><img src="assets/images/logo/preloader.gif" id="preloader_image" alt="loader">
+        </div>
+    </div>
+    <!--Preloader area End-->
+
+    <!--Header area start here-->
+    <header>
+        {% block navbar %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="logo-area">
+                            <a href=""><img src="{{ asset('images/logotr.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10 hidden-xs">
+                        <div class="main-header">
+                            <div class="main-menus">
+                                <nav>
+                                    <ul class="mamnu">
+                                        <li><a href="{{ path('front') }}">Home</a></li>
+                                        <li><a href="{{ path('frontP') }} ">shop</a></li>
+                                        <li><a href="{{ path('chasseFront') }}">Chasse</a></li>
+
+
+                                        <li>
+                                            <a href="#">Events</a>
+                                            <ul>
+
+
+
+                                                <li><a href="{{ path('frontE') }}">event</a></li>
+                                                {% if app.user is not null%}
+                                                <li><a href="{{ path('UserAfficheParticipation') }}">event-single</a></li>
+{% endif %}
+
+                                            </ul>
+                                        </li>
+                                        {% if app.user is not null%}
+                                        <li>
+                                            <a href="{{ path('reclamation_front') }}">Reclamation</a>
+                                            <ul>
+                                                <li><a href="{{ path('reclamation_front') }}">Reclamation</a></li>
+                                                <li><a href="{{ path('reponse_front1') }}">Reponse</a></li>
+                                            </ul>
+                                        </li>
+                                            <li>
+                                                <a href="{{ path('annonce_afficher_front') }}">Annonce</a>
+                                            </li>
+                                        {% endif %}
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="serach-header">
+                                <button class="searchd"><i class="fas fa-search"></i></button>
+                                <div class="searchbox">
+                                    <button class="close">×</button>
+                                    <form>
+                                        <input type="search" placeholder="Search …">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="cart-head">
+                                <button><i class="fas fa-shopping-cart"></i></button>
+
+                                <div class="nav-shop-cart">
+
+                                    {% block cart %}
+                                        <div class="widget_shopping_cart_content">
+                                            <ul class="product_list_widget ">
+                                                <li class="mini_cart_item">
+
+                                                    <a href="#">
+                                                        <img src="assets/images/products/5.jpg" alt="">
+                                                        <p class="product-name"></p>
+                                                    </a>
+
+                                                    <p class="quantity">
+                                                        <strong class="Price-amount"></strong>
+                                                    </p>
+
+                                                    <a href="#" class="remove" title="Remove this item"></a>
+                                                </li>
+
+
+                                            </ul>
+                                            <!-- /.product_list_widget -->
+
+                                            <p class="total">
+
+
+                                            </p>
+
+                                            <p class="buttons">
+                                                <a href="#" class="btn1">View Cart</a>
+                                                <a href="#" class="btn2">Checkout</a>
+                                            </p>
+                                        </div>
+
+                                    {% endblock %}
+                                </div>
+
+                            </div>
+                            <div class="sing-in-btn">
+                                {% block fos_user_content %}
+                                    {% if app.user is not null%}
+
+
+                                        <a class= href="#" data-toggle="dropdown" id="profileDropdown">
+                                            <img src="{{ asset('userImages/') }}{{app.user.image}}" style="width: 50px ; height: 50px;border-radius: 50%;"/>
+
+                                        </a>
+
+                                        <a class="btn1" href="{{ path('fos_user_security_logout') }}">
+                                            <i class="ti-new-window text-primary"></i>
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+
+
+                                        </a>
+
+                                    {% else %}
+
+
+                                        <a class="btn1" href="{{ path('fos_user_security_login') }}">
+                                            <i class="ti-settings text-primary"></i>
+                                            Connecter
+                                        </a>
+
+
+
+
+                                    {% endif %}
+
+
+                                {% endblock %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Responsive Menu area-->
+            <div class="mobilemenu">
+                <div class="mobile-menu visible-xs">
+                    <nav style="display: block;">
+                        <ul>
+                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">services</a></li>
+                            <li>
+                                <a href="javascript:void(0)">pages</a>
+                                <ul>
+                                    <li><a href="about.html">about</a></li>
+                                    <li><a href="shop.html">shop</a></li>
+                                    <li><a href="product-single.html">shop single</a></li>
+                                    <li><a href="{{ path('frontE') }}">event</a></li>
+                                    <li><a href="{{ path('UserAfficheParticipation') }}">event-single</a></li>
+                                    <li><a href="gallery.html">gallery</a></li>
+                                    <li><a href="blog.html">blog</a></li>
+                                    <li><a href="blog-single.html">blog single</a></li>
+                                    <li><a href="contact.html">contact</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">shop</a>
+                                <ul>
+                                    <li><a href="shop.html">shop page</a></li>
+                                    <li><a href="product-single.html">shop single</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">blog</a>
+                                <ul>
+                                    <li><a href="blog.html">blog page</a></li>
+                                    <li><a href="blog-single.html">blog single</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--Responsive Menu area End-->
+        {% endblock %}
+    </header>
+    <!--Header area end here-->
+    <!--Breadcumb area start here-->
+
+    <!--Breadcumb area end here-->
+    <!--Price area Start here-->
+    <section class="price-area section bg-img jarallax">
+        <div class="container">
+            {% block content %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="section-heading">
+                            <h2></h2>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="col-sm-4 pd-0">
+                            <div class="price-lists">
+                                <div class="phead">
+                                    <ul class="rate">
+                                        <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <h3></h3>
+                                    <div class="prices">
+                                        <strong><i class="fas fa-dollar-sign"></i>49</strong>
+                                        <span>/per mo</span>
+                                    </div>
+                                </div>
+                                <div class="pbody">
+                                    <ul>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span>M</span></li>
+                                    </ul>
+                                    <a href="#" class="btn4"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pd-0">
+                            <div class="price-lists middel">
+                                <div class="phead">
+                                    <ul class="rate">
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <h3></h3>
+                                    <div class="prices">
+                                        <strong><i class="fas fa-dollar-sign"></i>49</strong>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="pbody">
+                                    <ul>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                    </ul>
+                                    <a href="#" class="btn4"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pd-0">
+                            <div class="price-lists">
+                                <div class="phead">
+                                    <ul class="rate">
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                    </ul>
+                                    <h3></h3>
+                                    <div class="prices">
+                                        <strong><i class="fas fa-dollar-sign"></i>99</strong>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="pbody">
+                                    <ul>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span></span></li>
+                                        <li><span>M</span></li>
+                                    </ul>
+                                    <a href="#" class="btn4"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </section>
+    <!--Price area End here-->
+    <!--Trainning area Start here-->
+
+    <!--Trainning area End here-->
+    <!--Partner area start here-->
+
+    <!--Partner area End here-->
+    <!--Subscribe area start here-->
+
+    <section class="subscribe-area">
+        <div class="container">
+            {% block bottombar %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="subscribe">
+                            <span class="ico"><i class="far fa-envelope"></i></span>
+                            <div class="conts">
+                                <h2>Get Our Latest News</h2>
+                                <p>Subscribe our Newsletter Now !</p>
+                            </div>
+                            <form>
+                                <input type="email" placeholder="Email Address">
+                                <button type="submit" class="btn1">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </section>
+    <!--Subscribe area End here-->
+    <!--Footer area start here-->
+{% block footer %}
+    <footer class="jarallax" data-jarallax-original-styles="null" style="z-index: 0; background-image: url(https://images8.alphacoders.com/874/874296.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="footer-top section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="foo-about">
+                            <figure><img src="assets/images/logo/logo.png" alt=""></figure>
+                            <div class="contents">
+                                <p>All modern weaponts can apprecie our broad services akshay handge phatum feugiat gun. This is Photo shop's version of Lorem.</p>
+                                <a href="#" class="btn3">read more <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <ul class="foo-social">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <h2>latest News</h2>
+                        <div class="foo-news">
+                            <div class="newslists">
+                                <div class="dbox">
+                                    <div class="dleft">
+                                        <figure><img src="assets/images/blog/sm-1.jpg" alt=""></figure>
+                                    </div>
+                                    <div class="dright">
+                                        <div class="content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="newslists">
+                                <div class="dbox">
+                                    <div class="dleft">
+                                        <figure><img src="assets/images/blog/sm-2.jpg" alt=""></figure>
+                                    </div>
+                                    <div class="dright">
+                                        <div class="content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <h2>Product Shop</h2>
+                        <div class="products-foo">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm1.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm2.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm3.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="assets/images/products/sm4.jpg" alt=""></a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="copyright sm-t-center">
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="foo-links sm-t-center">
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Copyright Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-1" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/banner/bg-6.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1400.54px; height: 852.5px; overflow: hidden; pointer-events: none; margin-left: -91.7679px; margin-top: 42.25px; visibility: visible; transform: translate3d(0px, 42.3906px, 0px);"></div></div></footer>
+
+
+{% endblock %}
+    <!--Footer area end here-->
+
+    <!-- All JavaScript Here -->
+{% block script %}
+    <!-- jQuery latest version -->
+    <script src="{{ asset('front/js/vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- tether JavaScript -->
+    <script src="{{ asset('front/js/tether.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+    <!-- Owl.carousel JavaScript -->
+    <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+    <!-- Bxslider JavaScript -->
+    <script src="{{ asset('front/js/jquery.bxslider.min.js') }}"></script>
+    <!-- isotope JavaScript -->
+    <script src="{{ asset('front/js/isotope.pkgd.min.js') }}"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- meanmenu JavaScript -->
+    <script src="{{ asset('front/js/jquery.meanmenu.js') }}"></script>
+    <!-- jarallax JavaScript -->
+    <script src="{{ asset('front/js/jarallax.min.js') }}"></script>
+    <!-- jQuery-ui JavaScript -->
+    <script src="{{ asset('front/js/jquery-ui.min.js') }}"></script>
+    <!-- Progressbar Animation JavaScript -->
+    <script src="{{ asset('front/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('front/js/jquery.counterup.min.js') }}"></script>
+    <!-- masonry JavaScript -->
+    <script src="{{ asset('front/js/masonry.pkgd.min.js') }}"></script>
+    <!-- bootstrap-touchspin JavaScript -->
+    <script src="{{ asset('front/js/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <!-- downCount JavaScript -->
+    <script src="{{ asset('front/js/jquery.downCount.js') }}"></script>
+    <!-- wow JavaScript -->
+    <script src="{{ asset('front/js/wow.min.js') }}"></script>
+    <!-- slick JavaScript -->
+    <script src="{{ asset('front/js/slick.min.js') }}"></script>
+    <!-- Plugins JavaScript -->
+    <script src="{{ asset('front/js/plugins.js') }}"></script>
+    <!-- Init JavaScript -->
+    <script src="{{ asset('front/js/main.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#imagee').click(function () {
+                $('#popuppp').attr("aria-hidden", "true")
+            })
+
+
+
+            $('#submit').click(function () {
+                var p="putain";
+                var desc= $('#huntkingdombundle_reclamation_description').val();
+
+                if (desc.includes("putain") || desc.includes("pute")  || desc.includes("tempis")  || desc.includes("chier") || desc.includes("connard")  || desc.includes("shit"))
+                {
+                    swal({
+                        title: 'Error!',
+                        text: 'EVITEZ LES GROS MOTS SVP',
+                        icon: 'error',
+                        button: {
+                            text: "Continue",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary"
+                        }
+                    })
+                    return false;
+
+                }
+
+            });});
+    </script>
+    <script src="{{ asset('vendors/sweetalert/sweetalert.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#imagee').click(function () {
+                $('#popuppp').attr("aria-hidden", "true")
+            })
+
+
+
+            $('#submit').click(function () {
+                var p="putain";
+                var desc= $('#huntkingdombundle_reclamation_description').val();
+
+                if (desc.includes("putain") || desc.includes("pute")  || desc.includes("tempis")  || desc.includes("chier") || desc.includes("connard")  || desc.includes("shit"))
+                {
+                    swal({
+                        title: 'Error!',
+                        text: 'EVITEZ LES GROS MOTS SVP',
+                        icon: 'error',
+                        button: {
+                            text: "Continue",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary"
+                        }
+                    })
+                    return false;
+
+                }
+
+            });});
+    </script>
+
+    <script src="{{ asset('vendors/dropify/dropify.min.js') }}"></script>
+    <script src="{{ asset('js/dropify.js') }}"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+    <script src="{{ asset('vendors/dropzone/dropzone.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('vendors/dropify/dropify.min.css') }}">
+{% endblock %}
+    <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fas fa-angle-up"></i></a>
+
+
+{% endblock %}
+
+
+</body></html>

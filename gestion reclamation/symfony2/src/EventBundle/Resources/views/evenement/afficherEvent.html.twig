@@ -1,0 +1,89 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data table</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table id="order-listing" class="table">
+                            <thead>
+                            <tr>
+
+                                <th>Titre Evenement</th>
+                                <th>Description Evenement</th>
+                                <th>Image</th>
+                                <th>Date Debut</th>
+                                <th>Date Fin</th>
+                                <th>Nb Place </th>
+
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for e in evenement %}
+                                <tr>
+
+
+                                    <td class="event-des" >{{e.titreEvent}}</td>
+                                    <td class="event-des" >{{e.descriptionEvent}}</td>
+                                    <td > <img class="editbtn"  src="{{ asset('imagesEvent/') }}{{e.image}}" style="width: 100px ; height: 50px;">
+
+
+                                    </td>
+                                    <td id="date_debut">{{e.dateDebutEvent|date("m/d/Y")}}</td>
+                                    <td>{{e.dateFinEvent|date("m/d/Y")}}</td>
+                                    <td>{{e.nbPlaceEvent}}</td>
+                                    <td>
+
+
+
+
+
+                                                    <div class="modal-footer">
+                                                        <a href = "{{path ('evenement_supprimerevenement',{'id' : e.idEvent}) }} "  class="btn btn-gradient-primary btn-sm">Supprimer</a>
+                                                        <a href= "{{path ('evenement_modifierevenement',{'id' : e.idEvent}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a>
+                                                    </div>
+
+
+
+
+
+
+
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel-2">Description</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img  style="width: 450px; width: 300px; margin-left: 80px; "  id="img01">
+                                                <h4 id ="descrip"></h4>
+                                            </div>
+                                            <div  class="modal-footer">
+
+                                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

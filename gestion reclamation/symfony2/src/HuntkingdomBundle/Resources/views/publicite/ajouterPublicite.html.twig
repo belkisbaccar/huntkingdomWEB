@@ -1,0 +1,61 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block content %}
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ajouter Publicites</h4>
+                <p class="card-description">
+                    PUblicite
+                </p>
+                {{ form_start(form, { 'attr' : { 'class' : 'sample-sample' } }) }}
+                <div class="form-group">
+                    <label for="exampleInputName1">Nom du Publicite</label>
+                    {{ form_widget(form.nom, { 'attr' : { 'class' : 'form-control' } } ) }}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Position Publicite</label>
+                    {{ form_widget(form.position, { 'attr' : { 'class' : 'form-control' } } ) }}
+                </div>
+                <div class="form-group">
+
+                    <label for="exampleInputEmail3">Image</label>
+                    {{ form_widget(form.file, { 'attr' : { 'class' : 'dropify' } } ) }}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Date Debut</label>
+
+
+                        {{ form_widget(form.dateDebut, { 'attr' : { 'class' : 'form-control'} } ) }}
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Date Fin</label>
+
+
+
+
+                    {{ form_widget(form.dateFin, { 'attr' : { 'class' : 'form-control' } } ) }}
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword4">prix</label>
+
+                    {{ form_widget(form.prix, { 'attr' : { 'class' : 'form-control' } } ) }}
+
+            </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Nom proprietaire</label>
+                    {{ form_widget(form.nomProprietaire, { 'attr' : { 'class' : 'form-control' } } ) }}
+                </div>
+                {{ form_widget(form) }}
+                <input  class="btn btn-info"  id="submit" type="submit" value="Confirmer" />
+                <button class="btn btn-light">Cancel</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

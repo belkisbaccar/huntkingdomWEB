@@ -1,0 +1,508 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    {% block stylesheets %}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script>
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawBasic);
+
+            function drawBasic() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['Nom Publicite', 'Nb like',],
+                    {% for i in Publicite %}
+                    ['{{i.nom}}',{{ i.nblike }}],
+                    {% endfor %}
+                ]);
+
+                var options = {
+                    title: 'Nb like des Publicites',
+                    chartArea: {width: '400px'},
+                    hAxis: {
+                        title: 'Total Nb like',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: 'Nom Publicite'
+
+                    }
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+            }
+        </script>
+
+        <script type="text/javascript">
+            // Load google charts
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Draw the chart and set the chart values
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+
+                    ['Nom Publicite', 'Nb Like'],
+                    {% for i in Publicite %}
+                    ['Nom pub : {{ i.nom }}\n Prix : {{ i.prix }}',{{ i.nblike }}],
+                    {% endfor %}
+                ]);
+
+                // Optional; add a title and set the width and height of the chart
+                var options = {'title':'Nb like des PUblicite', 'width':400, 'height':400};
+
+                // Display the chart inside the <div> element with id="piechart"
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                chart.draw(data, options);
+            }
+        </script>
+        <script>
+            $(function() {
+
+                $('#calendar').fullCalendar({
+                    themeSystem: 'bootstrap4',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,listMonth'
+                    },
+                    weekNumbers: true,
+                    eventLimit: true, // allow "more" link when too many events
+                    selectable: true,
+                    selectHelper: true,
+                    editable: true,
+                    events: [
+                        {% for e in Publicite %}  {
+                            id: '{{e.image}}',
+                            title: '{{e.nom}} ',
+                            start: '{{ e.dateDebut|date('Y-m-d') }}',
+                            end:'{{ e.dateFin|date('Y-m-d') }}',
+
+
+                        }, {% endfor %}
+                    ],
+
+                    eventClick:  function(event, jsEvent, view) {
+                        $('#modalTitle').html();
+                        var extension = event.id.substr( (event.id.lastIndexOf('.') +1) );
+                        $('#modalBody').html('<h3>'+'Nom Publicite :'+event.title+'</h3>');
+
+                        var modalImg = document.getElementById("imgC");
+
+
+                        modalImg.src ="{{ asset('imagesPub/') }}"+ event.id;
+
+
+                        if (extension === "mp4")
+                        {$('.myimgdivshowhide').hide();
+                            var src="{{ asset('imagesPub/') }}"+ event.id;
+
+                            document.getElementById('div_video').innerHTML = '<video autoplay controls muted id="video_ctrl" style="height: 250px; margin-left: -3px;width: 500px;"><source src="'+src+'" type="video/mp4"></video>';
+                            document.getElementById('video_ctrl').play();
+                            $('.myimgdivshowhide1').show();
+                        }
+                        else {
+                            $('.myimgdivshowhide1').hide();
+                            $('.myimgdivshowhide').show();
+                        }
+
+                        $('#calendarModal').modal();
+                    },
+                });
+
+            });
+        </script>
+
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            .dot {
+                height: 15px;
+                width: 15px;
+                background-color: #418b69;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            .dot1{
+                height: 15px;
+                width: 15px;
+                background-color: #418b69;
+                border-radius: 50%;
+                display: inline-block;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .myimgdivshowhide{
+                display:none;
+            }
+            .myimgdivshowhide1{
+                display:none;
+            }
+            #calendar {
+                width: 100%;
+                height: 100%;
+
+                margin: 0 auto;
+            }
+            .notification {
+                background-color: #555;
+                color: white;
+                text-decoration: none;
+                padding: 15px 26px;
+                position: relative;
+                display: inline-block;
+                border-radius: 2px;
+            }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% if Pub|length >0 %}
+    <a style="  right: -1080px ; top: -70px ; " href="#" class="notification"><i class="fa fa-bell">
+
+
+            <span class="badge">{{ Pub|length}}</span>
+            <div  class="modal fade" id="supp1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 style="color: white">Publicite Désactivée</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table id="example2" class="table">
+                                <thead>
+                                <tr>
+
+                                    <th>Nom Publicite</th>
+                                    <th>Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for e in Pub %}
+                                    <tr>
+
+                                        <td class="alert-danger">{{e.nom}}</td>
+                                        <td class="alert-danger" >
+                                    {% if e.image|split('.')|last == "mp4"  %}
+                                    <video id="vid" height="70px" width="100px"  controls autoplay muted >
+                                        <source src="{{ asset('imagesPub/') }}{{e.image}}" type="video/mp4">
+                                        <source src="{{ asset('imagesPub/') }}{{e.image}}" type="video/ogg">
+                                    </video>
+                                {% else %}
+
+                                            <img src="{{ asset('imagesPub/') }}{{e.image}}" >
+{% endif %}
+                                        </td>
+
+                                        <td class="alert-danger"><a href= "{{path ('publicite_updatePublicite',{'id' : e.idPublicite}) }} " class="btn btn-inverse-success btn-fw">Activer</a>
+                                            <a  href = "{{path ('publicite_supprimerPublicite',{'id' : e.idPublicite}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+                                        </td>
+
+                                    </tr>
+
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div  class="modal-footer">
+
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </i>
+    </a>
+
+
+    <div class="w3-container">
+        <h2>View Mode</h2>
+
+
+        <div class="w3-bar w3-black">
+            <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">Table</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Timeline</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Calendar</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'berlin')">Stat</button>
+
+        </div>
+
+        <div id="London" class="w3-container w3-border city">
+            <h2>Table Publicites</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data table</h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table id="example1" class="table">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Nom Publicite</th>
+                                        <th>Position</th>
+                                        <th>Image</th>
+                                        <th>Date Debut</th>
+                                        <th>Date Fin</th>
+                                        <th>Nom Proprietaire</th>
+                                        <th>prix</th>
+
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for e in Publicite %}
+                                        <tr>
+
+                                            <td  id="nom_pub" >{{e.nom}}</td>
+                                            <td >{{e.position}}</td>
+
+                                            <td  >
+                                        {% if e.image|split('.')|last == "mp4"  %}
+                                        <video id="vid" height="70px" width="150px"  controls autoplay muted >
+                                            <source src="{{ asset('imagesPub/') }}{{e.image}}" type="video/mp4">
+                                            
+                                        </video>
+                                    {% else %}
+
+                                                <img style=" height: 70px;width: 150px;" class="editbtn"  src="{{ asset('imagesPub/') }}{{e.image}}" >
+
+{% endif %}
+                                            </td>
+                                            <td>{{e.dateDebut|date('Y-m-d')}} <br><br>Time: {{ e.dateDebut|date('H:i') }}</td>
+                                            <td>{{e.dateFin|date('Y-m-d')}} <br><br>Time: {{ e.dateFin|date('H:i') }}</td>
+                                            <td>{{e.nomProprietaire}}</td>
+                                            <td>{{e.prix}}</td>
+                                            <td>
+
+                                                <a style="width: 100px"  href = "{{path ('publicite_supprimerPublicite',{'id' : e.idPublicite}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a><br><br>
+                                                <a style="width: 100px" href= "{{path ('publicite_updatePublicite',{'id' : e.idPublicite}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a><br><br>
+                                                <a style="width: 100px"  href= "{{path ('publicite_desactiverPublicite',{'id' : e.idPublicite}) }} " class="btn btn-gradient-danger">Desactiver</a>
+
+                                            </td>
+
+
+                                        </tr>
+                                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel-2">Description</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img  style="width: 450px; width: 300px; margin-left: 80px; "  id="img01">
+                                                        <h4 id ="descrip"></h4>
+                                                    </div>
+                                                    <div  class="modal-footer">
+
+                                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div id="Paris" class="w3-container w3-border city" style="display:none">
+            <h2>Timeline Publicite</h2>
+
+            <div class="card-body">
+                <h4 class="card-title"><span class="dot"></span> Publicite Activée</h4>
+
+                <div class="mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="timeline">
+                                {% for i in Pub1 %}
+                                    {% if i.etat==0 %}
+                                        <div class="timeline-wrapper timeline-wrapper-success">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h6 class="timeline-title">Nom de la Publicite : {{ i.nom }}</h6>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Date Debut: {{i.dateDebut|date('Y-m-d')}} </p>
+                                                </div>
+                                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+
+                                                    <span>
+                                    {% if i.image|split('.')|last == "mp4"  %}
+                                        <video id="vid" height="70px" width="150px"  controls autoplay muted >
+                                            <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/mp4">
+                                            <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/ogg">
+                                        </video>
+                                    {% else %}
+
+                                                        <img class="" style="width: 150px;height: 70px" src="{{ asset('imagesPub/') }}{{i.image}}" >
+                                        {% endif %}
+                                        </span><br><br>
+                                                    <span class="ml-md-auto font-weight-bold">Date Fin: {{i.dateFin|date('Y-m-d')}} </span>
+
+                                                </div>
+                                                <a  href = "{{path ('publicite_supprimerPublicite',{'id' : i.idPublicite}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+                                                <a href= "{{path ('publicite_updatePublicite',{'id' : i.idPublicite}) }} " class="btn btn-inverse-success btn-fw" >Modifier</a>
+                                                <a  href= "{{path ('publicite_desactiverPublicite',{'id' : i.idPublicite}) }} " class="btn btn-gradient-danger">Desactiver</a>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="timeline-wrapper timeline-inverted timeline-wrapper-danger">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h6 class="timeline-title">Nom de la Publicite : {{ i.nom }}</h6>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>Date Debut: {{i.dateDebut|date('Y-m-d')}} </p>
+                                                </div>
+                                                <div class="timeline-footer d-flex align-items-center flex-wrap">
+                                                    <span>
+                                    {% if i.image|split('.')|last == "mp4"  %}
+                                        <video id="vid" height="70px" width="150px"  controls autoplay muted >
+                                            <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/mp4">
+                                            <source src="{{ asset('imagesPub/') }}{{i.image}}" type="video/ogg">
+                                        </video>
+                                    {% else %}
+
+                                        <img class="" style="width: 150px;height: 70px" src="{{ asset('imagesPub/') }}{{i.image}}" >
+                                    {% endif %}
+                                        </span><br><br>
+
+                                                    <span class="ml-md-auto font-weight-bold">Date Fin: {{i.dateFin|date('Y-m-d')}} </span>
+                                                </div>
+                                                <a href= "{{path ('publicite_updatePublicite',{'id' : i.idPublicite}) }} " class="btn btn-inverse-success btn-fw">Activer</a>
+                                                <a  href = "{{path ('publicite_supprimerPublicite',{'id' : i.idPublicite}) }} "  class="btn btn-inverse-primary btn-fw">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Tokyo" class="w3-container w3-border city" style="display:none">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Fullcalendar</h4>
+                    <div  id="calendar" class="full-calendar">
+                    </div>
+                    <div id="calendarModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                                    <h4 id="modalTitle" class="modal-title"></h4>
+                                </div>
+                                <div id="modalBody" class="modal-body"></div>
+
+                                <img  style="height: 250px; margin-left: 4px;width: 480px;" id="imgC" class="myimgdivshowhide">
+
+                                <div id="div_video" class="myimgdivshowhide1">
+                                </div>
+
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="berlin" class="w3-container w3-border city" style="display:none">
+
+                    <h4 class="card-title">Stat Publicite</h4>
+                    <div class="col-lg-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Pie chart</h4>
+                                <div style="width:350px; " id="piechart"></div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Bar chart</h4>
+                        <div id="chart_div"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    <br>
+    </div>
+    <script>
+        function openCity(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+        }
+    </script>
+
+{% endblock %}
+
+
+

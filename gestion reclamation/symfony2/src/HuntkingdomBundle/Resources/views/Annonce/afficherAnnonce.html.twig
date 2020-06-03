@@ -1,0 +1,55 @@
+{% extends 'backoffice.html.twig' %}
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+{% endblock %}
+{% block content %}
+    <div class="row grid-margin">
+    <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste Des Annonces</h4>
+            <p class="card-description">Annonce</p>
+
+
+                    <table id="order-listing" class="table">
+                        <tr class="jsgrid-header-row">
+                            <th  style="width: 70px;">id_annonce</th>
+                            <th  style="width: 150px;">Annonce</th>
+                            <th  style="width: 80px;">Image</th>
+                            <th style="width: 50px;">Ecrit par</th>
+                            <th  style="width: 50px;">nombre de j'aime</th>
+
+
+                        </tr>
+                        {% for e in Annonce %}
+                            <tr class="jsgrid-filter-row">
+                                <td  style="width: 150px;">{{e.idAnnonce}}</td>
+                                <td  style="width: 150px;">{{e.Text}}</td>
+                                <td  style="width: 150px;"><img src="{{ asset('images/') }}{{ e.image }}" style="width: 50px;height: 50px"></td>
+                                <td  style="width: 50px;">{{e.user.username}}</td>
+                                <td  style="width: 50px;">{{e.aime}}</td>
+                                <td  style="width: 200px;">
+
+                                    <a href = "{{path ('annonce_supprimerAnnonce',{'id' : e.idAnnonce}) }}" onclick="return confirm('vous voulez supprimer cet annonce?')" class="btn btn-inverse-primary btn-fw jsgrid-align-center">Supprimer</a><br><br>
+                                   {%  if e.user.id == user.id %}
+                                    <a href = "{{path ('annonce_modifierAnnonce',{'id' : e.idAnnonce}) }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Modifier</a><br><br>
+                                   {% endif %}
+                                    <a href = "{{path ('commentaire_afficherCommentaire',{'id' : e.idAnnonce}) }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Les commentaires</a><br><br>
+                                    <a href = "{{path ('commentaire_ajouterCommentaire',{'id' : e.idAnnonce}) }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Commenter</a><br><br>
+
+
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+
+        </div>
+    </div>
+    <br> <br>
+    <a href = "{{path ('Ajouter_annonce') }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Ajouter Annoncer</a>
+    <a href = "{{path ('stat') }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">Statistique</a><br><br>
+
+{% endblock %}

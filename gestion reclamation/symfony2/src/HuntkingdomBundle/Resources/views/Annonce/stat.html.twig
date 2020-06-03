@@ -1,0 +1,87 @@
+{% extends 'backoffice.html.twig' %}
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+{% endblock %}
+{% block content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        var ids=[];
+        var totals=[];
+        {% for id in ids %}
+        ids.push({{id}});
+        {% endfor %}
+        {% for total in totals %}
+        totals.push({{ total }})
+        {% endfor %}
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#ccc5c6';
+
+        let massPopChart = new Chart(myChart, {
+            type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data:{
+
+                labels:ids,
+                datasets:[{
+                    label:'Annonce',
+                    data:totals,
+                    //backgroundColor:'green',
+                    backgroundColor:[
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+                        'rgba(255, 70, 80, 0.6)',
+
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                }]
+            },
+            options:{
+                title:{
+                    display:true,
+                    text:'Statistique selon nombre de jaime de chaque Annonce',
+                    fontSize:25
+                },
+                legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000'
+                    }
+                },
+                layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                },
+                tooltips:{
+                    enabled:true
+                }
+            }
+        });
+    </script>
+    <br><br><br>
+    <a href = "{{path ('annonce_afficher_back') }}" class="btn btn-inverse-success btn-fw jsgrid-align-center">retour</a><br><br>
+
+{% endblock %}

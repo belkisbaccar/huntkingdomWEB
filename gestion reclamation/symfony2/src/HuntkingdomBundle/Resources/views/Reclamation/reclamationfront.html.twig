@@ -1,0 +1,168 @@
+{% extends 'index.html.twig' %}
+
+{% block backNavbar %}
+    <section class="breadcumb-area jarallax bg-img af" data-jarallax-original-styles="null" style="z-index: 0; background-image:url(https://images.alphacoders.com/860/860767.jpg); background-attachment: scroll; background-size: auto;">
+        <div class="breadcumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="content">
+                            <h2>Réclamations</h2>
+                            <ul>
+                                <li><a href="{{ path('front') }}">Home</a></li>
+                                <li><a href="javascript:void(0)">Reclamation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100;"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;file:///C:/Users/azizm/Desktop/front/front/www.webstrot.com/html/weapon/assets/images/breadcumb/bg-1.jpg&quot;); position: fixed; top: 0px; left: 0px; width: 1859.66px; height: 678px; overflow: hidden; pointer-events: none; margin-left: -321.329px; margin-top: 129px; visibility: visible; transform: translate3d(0px, -129px, 0px);"></div></div></section>
+{%  endblock %}
+{% block content %}
+
+
+    <!--Breadcumb area end here-->
+
+    <!--Event details area end here-->
+    <!--Event manegment area start here-->
+    <section class="event-manegment section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="section-heading2">
+                        <h2>Photos des reclamations</h2>
+                        <div class="speakers-slider">
+    {% for e in reclamations %}
+                            <div class="sp-list">
+                                <figure><img src="{{ asset('images/') }}{{ e.image }}" style="height: 100px" alt="" /></figure>
+                                <div class="con">
+                                    <a href="#">
+                                        {% if e.idAnnonceReclame is null  %}
+                                            Produit
+                                        {% else %}
+                                            Annonce
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="event-schedule">
+                        <div class="section-heading2">
+                            <h2>Tableaux des reclamations</h2></div>
+                        <table class="table table-hover">
+                            <tbody>{% for e in reclamations %}
+                            <tr>
+                                <td><strong>{{e.date|date("m/d/Y")}}</strong></td>
+                                <td><span>{{e.etat}}</span></td>
+                                <td><a href="#">{{e.note}}</a></td>
+                            </tr>
+
+                            </tbody>{% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Event manegment area end here-->
+    <!--Event area start here-->
+    <section class="events-area section bg-img jarallax">
+        <div class="container">
+            <div class="row section4">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="map-area">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-heading">
+                        <h2>Vos reclamations detaillées</h2>
+                        <p>Merci pour vos feedbacks. On veille à satisfaire nos clients avec notre service de traitements des réclamations ainsi vous trouvez ci-dessous tous vos réclamations bien détaillées. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    {% for e in reclamations  %}
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading" role="tab" id="{{ loop.index }}">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="cnc">
+                                    <h3>Reclamation concernant : {% if e.idAnnonceReclame is null  %}
+                                            Produit
+                                        {% else %}
+                                            Annonce
+                                        {% endif %}
+                                    </h3>
+                                    <ul>
+                                        <li><i class="far fa-calendar"></i><span>{{ e.date|date("m/d/Y") }}</span></li>
+                                        <li><i class="far fa-check"></i><span>{{ e.etat}}</span></li>
+                                        <li><i class="fas fa-star"></i><span>{{ e.note }}</span></li>
+                                    </ul>
+                                    <span class="arrows">0{{ loop.index }}</span>
+
+                                </a>
+                            </div>
+
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                                <div class="panel-body">
+                                    <p>{{ e.description }}</p>
+                                    <div class="col-sm-8 pd-0">
+
+                                            <div><img src="{{ asset('images/') }}{{ e.image }}" alt="" /></div>
+                                        <br><br>
+                                        <div><a class="btn1" href="{{path ('recl_modifier_front',{'id' : e.idReclamation}) }}">modifier</a></div>
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Subscribe area start here-->
+    <section class="subscribe-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="subscribe">
+                        <span class="ico"><i class="far fa-envelope"></i></span>
+                        <div class="conts">
+                            <h2>Get Our Latest News</h2>
+                            <p>Subscribe our Newsletter Now !</p>
+                        </div>
+                        <form>
+                            <input type="email" placeholder="Email Address">
+                            <button type="submit" class="btn1">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Subscribe area End here-->
+
+
+{% endblock %}

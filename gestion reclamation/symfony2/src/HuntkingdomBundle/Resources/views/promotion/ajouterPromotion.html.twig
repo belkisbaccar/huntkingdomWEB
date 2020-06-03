@@ -1,0 +1,68 @@
+{% extends 'backoffice.html.twig' %}
+{% block content %}
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ajouter Promotion</h4>
+                <p class="card-description">
+                    Produits
+                </p>
+                <div hidden="hidden">{{ form_start(form, { 'attr' : { 'class' : 'sample-sample' } }) }} </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">ID Produits</label>
+                      {% if produits |length ==0 %}
+
+                    <label class="form-control">pas de produits</label>
+                   {% else %}
+                    <select class="form-control" name="produit" >
+
+                        {% for i in produits %}
+                            <option value="{{ i.id }}"> {{ i.nom }}</option>
+
+
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Taux Promotion</label>
+                    {% if produits |length ==0 %}
+                        <label class="form-control">pas de produits</label>
+                    {% else %}
+                   <select class="form-control" name="taux" id="taux">
+                       <option value="10">10%</option>
+                       <option value="20">20%</option>
+                       <option value="30">30%</option>
+                       <option value="40">40%</option>
+                       <option value="50">50%</option>
+                       <option value="60">60%</option>
+                       <option value="70">70%</option>
+                       <option value="80">80%</option>
+                   </select>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Date Debut de la Promotion</label>
+
+                    {{ form_widget(form.dateDebut, { 'attr' : { 'class' : 'form-control' } } ) }}
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Date Fin de la Promotion</label>
+                    {{ form_widget(form.dateFin, { 'attr' : { 'class' : 'form-control' } } ) }}
+                </div>
+
+
+                {% if produits |length ==0 %}
+                <a class="btn btn-info">Consulter la Base</a>
+                {% else %}
+                    {{ form_widget(form) }}
+                <input  class="btn btn-info"  id="submit3" type="submit" value="Confirmer" />
+                <button class="btn btn-light">Cancel</button>
+                {% endif %}
+
+ {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% set total = 0 %}
+{% block body %}
+    {% if Produit | length > 0 %}
+        <img src="{{asset('images/logo.png') }}" alt="">
+        <table class="table table-bordered table-dark">
+            <thead>
+            <tr>
+                <td>Produit</td>
+                <td>Price</td>
+
+                <td>total</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for Product in Produit %}
+                <tr>
+                    <td>{{ Product.nom }}</td>
+                    <td>{{ Product.prix }}.dt</td>
+
+                </tr>
+                {% set total = total + Product.prix %}
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total :</td>
+                <td>{{ total }}.dt</td>
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p>panier est vide</p>
+    {% endif %}
+
+{% endblock %}
+{% set total = 0 %}
+
+

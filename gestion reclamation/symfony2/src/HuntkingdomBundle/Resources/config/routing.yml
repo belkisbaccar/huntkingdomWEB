@@ -1,0 +1,277 @@
+huntkingdom_homepage:
+    path:     /
+    defaults: { _controller: HuntkingdomBundle:Default:index }
+commerce_ajoutProduit:
+    path:     /ajouterProduit
+    defaults: { _controller: HuntkingdomBundle:produit:ajouterProduit}
+
+commerce_afficherProduit:
+    path:     /afficherProduit
+    defaults: { _controller: HuntkingdomBundle:produit:afficherProduit}
+
+commerce_supprimerProduit:
+    path:     /supprimer/{id}
+    defaults: { _controller: HuntkingdomBundle:produit:supprimerProduit}
+
+commerce_modifierProduit:
+    path:     /updateP/{id}
+    defaults: { _controller: HuntkingdomBundle:produit:updateProduit}
+
+add_panier:
+    path:     /panier/add/{id}
+    defaults: { _controller: HuntkingdomBundle:produit:addPanier }
+
+ajax_search:
+    path:     /search
+    defaults: { _controller: HuntkingdomBundle:produit:search }
+
+show_panier:
+    path:     /panier
+    defaults: { _controller: HuntkingdomBundle:produit:showPanier }
+
+remove_panier:
+    path:     /panier/remove/{id}
+    defaults: { _controller: HuntkingdomBundle:produit:removePanier }
+
+pdf:
+    path:     /pdf
+    defaults: { _controller: HuntkingdomBundle:produit:facturePDF }
+
+
+frontP:
+    path:     /Shops
+    defaults: { _controller: HuntkingdomBundle:produit:afficherP }
+
+
+
+publicite_ajoutPublicite:
+    path:    /ajouterPublicite
+    defaults: { _controller: HuntkingdomBundle:publicite:ajouterPublicite}
+
+chasse_ajoutChasse:
+    path:    /ajouterChasse
+    defaults: { _controller: HuntkingdomBundle:Chasse:ajouterChasse}
+
+chasse_afficherChasse:
+    path:    /afficherChasse
+    defaults: { _controller: HuntkingdomBundle:Chasse:showChasse}
+animal_afficherAnimal:
+    path:    /afficherAnimal
+    defaults: { _controller: HuntkingdomBundle:animal:showAnimal}
+chasseFront:
+    path:    /chasseFront
+    defaults: { _controller: HuntkingdomBundle:Chasse:showChasseF}
+
+chasse_deleteChasse:
+    path:    /deleteChase/{id}
+    defaults: { _controller: HuntkingdomBundle:Chasse:deleteChasse}
+animal_deleteAnimal:
+    path:    /deleteAnimal/{id}
+    defaults: { _controller: HuntkingdomBundle:animal:delete}
+animal_modifAnimal:
+    path:    /modifAnimal/{id}
+    defaults: { _controller: HuntkingdomBundle:animal:editAnimal}
+
+chasse_modifChasse:
+    path:    /modifChase/{id}
+    defaults: { _controller: HuntkingdomBundle:Chasse:modifChasse}
+animal_ajoutAnimal:
+    path:    /ajouterAnimal
+    defaults: { _controller: HuntkingdomBundle:animal:ajouterAnimal}
+
+
+publicite_afficherPublicite:
+    path:     /afficherPublicite
+    defaults: { _controller: HuntkingdomBundle:publicite:afficherPublicite}
+
+publicite_supprimerPublicite:
+    path:     /supprimerpub/{id}
+    defaults: { _controller: HuntkingdomBundle:publicite:supprimerPublicite}
+
+publicite_updatePublicite:
+    path:     /update/{id}
+    defaults: { _controller: HuntkingdomBundle:publicite:updatePublicite }
+
+
+promotion_ajoutPromotion:
+    path:    /ajouterPromotion
+    defaults: { _controller: HuntkingdomBundle:promotion:ajouterPromotion}
+
+promotion_afficherPromotion:
+    path:    /afficherPromotion
+    defaults: { _controller: HuntkingdomBundle:promotion:afficherPromotion}
+publicite_desactiverPublicite:
+    path:     /desactiver/{id}
+    defaults: { _controller: HuntkingdomBundle:publicite:desactiverPublicite }
+
+promotion_desactiverPromotion:
+    path:     /desactiverPromo/{id}
+    defaults: { _controller: HuntkingdomBundle:promotion:desactiverPromotion }
+promotion_supprimerPromotion:
+    path:    /supprimerpromo/{id}
+    defaults: { _controller: HuntkingdomBundle:promotion:supprimerPromotion}
+
+promotion_updatePromotion:
+    path:    /updatepromo/{id}
+    defaults: { _controller: HuntkingdomBundle:promotion:updatePromotion}
+
+
+
+
+
+
+reclamation_ajouterReclamation:
+    path:     /ajouterReclamation
+    defaults: { _controller: HuntkingdomBundle:Reclamation:create}
+
+
+reclamation_afficherReclamations:
+    path:     /afficherReclamations
+    defaults: { _controller: HuntkingdomBundle:Reclamation:read}
+
+reclamation_supprimerReclamation:
+    path:     /supprimerReclamation/{id}
+    defaults: { _controller: HuntkingdomBundle:Reclamation:delete}
+
+
+reclamation_traiterReclamation:
+    path:     /traiterReclamation/{id}
+    defaults: { _controller: HuntkingdomBundle:Reclamation:update_etat}
+
+reclamation_reclamerProduit:
+    path:     /reclamerProduit
+    defaults: { _controller: HuntkingdomBundle:Reclamation:create_produit}
+
+reponse_ajouterReponse:
+    path:     /ajouterReponse/{id}
+    defaults: { _controller: HuntkingdomBundle:Reponse:create}
+
+reponse_afficherReponses:
+    path:     /afficherReponses
+    defaults: { _controller: HuntkingdomBundle:Reponse:read}
+
+reponse_supprimerReponse:
+    path:     /supprimerReponse/{id}
+    defaults: { _controller: HuntkingdomBundle:Reponse:delete}
+
+
+reponse_modifierReponse:
+    path:     /modifierReponse/{id}
+    defaults: { _controller: HuntkingdomBundle:Reponse:update}
+reclamation_front:
+    path:     /reclamation
+    defaults: { _controller: HuntkingdomBundle:Reclamation:readfront}
+reclamation_ajout_front:
+    path:     /reclamationAjout/{id}
+    defaults: { _controller: HuntkingdomBundle:Reclamation:create_produit_front}
+
+recl_modifier_front:
+    path:     /reclamationModifier/{id}
+    defaults: { _controller: HuntkingdomBundle:Reclamation:update_front}
+reponse_front1:
+    path:     /reponse
+    defaults: { _controller: HuntkingdomBundle:Reponse:read_front}
+
+graphe_priority:
+    path:     /graphepriority
+    defaults: { _controller: GrapheBundle:Graphe:chartPie}
+
+graphe_etat:
+    path:     /graphepriority
+    defaults: { _controller: GrapheBundle:Graphe:chart_etat}
+
+sendmailajout:
+    path:     /sendm
+    defaults: { _controller: MailBundle:Mail:sendMail}
+
+algo:
+    path:     /algo
+    defaults: { _controller: HuntkingdomBundle:Reclamation:satisfaction_algorithm}
+
+
+
+
+
+
+front:
+    path:     /front
+    defaults: { _controller: HuntkingdomBundle:Default:index }
+
+cart:
+    path:     /cart
+    defaults: { _controller: HuntkingdomBundle:produit:index }
+
+publiciteAimer_ajout:
+    path:    /pubAimer/{id}
+    defaults: { _controller: HuntkingdomBundle:publiciteAimer:ajouterPubliciteAimer}
+
+supprime:
+    path:    /supp/{id}
+    defaults: { _controller: HuntkingdomBundle:publiciteAimer:supprimerPubliciteAimer}
+Ajouter_annonce:
+    path:     /ajouterannonce
+    defaults: { _controller: HuntkingdomBundle:Annonce:ajouterAnnonce}
+annonce_afficher_back:
+    path:     /afficherannonce
+    defaults: { _controller: HuntkingdomBundle:Annonce:afficherAnnonce}
+
+annonce_supprimerAnnonce_back:
+    path:     /supprimerannonce/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:supprimerAnnonce}
+annonce_supprimerAnnonce:
+    path:     /supprimerannonce/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:supprimerAnnonce}
+
+annonce_modifierAnnonce:
+    path:     /modifierannonce/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:updateAnnonce}
+
+commentaire_afficherCommentaire:
+    path:     /affichercommentaire/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:afficherCommentaire}
+commentaire_supprimerCommentaire:
+    path:     /supprimercommentaire/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:supprimerCommentaire}
+commentaire_modifierCommentaire:
+    path:     /modifiercommentaire/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:updateCommentaire}
+commentaire_ajouterCommentaire:
+    path:     /ajoutercommentaire/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:ajouterCommentaire}
+annonce_afficher_front:
+    path:     /afficherannoncefront
+    defaults: { _controller: HuntkingdomBundle:Annonce:afficherAnnonce_front}
+annonce_ajouterAnnonce_front:
+    path:     /ajouterannoncefront
+    defaults: { _controller: HuntkingdomBundle:Annonce:ajouterAnnonce_front}
+annonce_supprimerAnnonce_front:
+    path:     /supprimerannoncefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:supprimerAnnonce_front}
+annonce_modifierAnnonce_front:
+    path:     /modifierannoncefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:modifierAnnonce_front}
+afficherCommentaire_front:
+    path:     /affichercommentairefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:afficherCommentaire_front}
+supprimerCommentaire_front:
+    path:     /supprimercommentairefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:supprimerCommentaire_front}
+ajouterCommentaire_front:
+    path:     /ajoutercommentairefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:ajouterCommentaire_front}
+modifierCommentaire_front:
+    path:     /modifiercommentairefront/{id}
+    defaults: { _controller: HuntkingdomBundle:Commentaire:updateCommentaire_front}
+annonce_aime_front:
+    path:     /afficherannonce/{id}
+    defaults: { _controller: HuntkingdomBundle:Annonce:aimer}
+stat:
+    path:     /statistique
+    defaults: { _controller: HuntkingdomBundle:Annonce:stat}
+
+notif:
+    path:     /notif
+    defaults: { _controller: HuntkingdomBundle:Default:affnotif }
+send-notification:
+    path:     /send-notification
+    defaults: { _controller: HuntkingdomBundle:Default:sendNotification }
